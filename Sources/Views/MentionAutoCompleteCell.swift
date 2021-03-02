@@ -9,8 +9,8 @@ import Kingfisher
 import UIKit
 
 class MentionAutoCompleteCell: UITableViewCell, AutoCompletionItemCell {
-    struct Padding {
-        struct Profile {
+    enum Padding {
+        enum Profile {
             static let left: CGFloat = 20
             static let width: CGFloat = 40
             static let height: CGFloat = 40
@@ -18,7 +18,7 @@ class MentionAutoCompleteCell: UITableViewCell, AutoCompletionItemCell {
             static let bottom: CGFloat = 10
         }
 
-        struct Name {
+        enum Name {
             static let left: CGFloat = 10
             static let right: CGFloat = 10
         }

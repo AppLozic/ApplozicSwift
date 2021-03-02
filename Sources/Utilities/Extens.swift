@@ -130,34 +130,34 @@ public enum Color {
     }
 }
 
-extension UIFont {
-    public static func font(_ font: Font) -> UIFont {
+public extension UIFont {
+    static func font(_ font: Font) -> UIFont {
         return font.font()
     }
 }
 
-extension UIColor {
-    public static func text(_ color: Color.Text) -> UIColor {
+public extension UIColor {
+    static func text(_ color: Color.Text) -> UIColor {
         return .hex8(color.rawValue)
     }
 
-    public static func background(_ color: Color.Background) -> UIColor {
+    static func background(_ color: Color.Background) -> UIColor {
         return .hex8(color.rawValue)
     }
 
-    public static func border(_ color: Color.Border) -> UIColor {
+    static func border(_ color: Color.Border) -> UIColor {
         return .hex8(color.rawValue)
     }
 
-    public static func color(_ color: Color.Text) -> UIColor {
+    static func color(_ color: Color.Text) -> UIColor {
         return .hex8(color.rawValue)
     }
 
-    public static func color(_ color: Color.Background) -> UIColor {
+    static func color(_ color: Color.Background) -> UIColor {
         return .hex8(color.rawValue)
     }
 
-    public static func color(_ color: Color.Border) -> UIColor {
+    static func color(_ color: Color.Border) -> UIColor {
         return .hex8(color.rawValue)
     }
 }

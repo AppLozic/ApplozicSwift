@@ -40,7 +40,7 @@ extension UIAlertController {
 }
 
 extension UIAlertController {
-    private struct ActivityIndicatorData {
+    private enum ActivityIndicatorData {
         static var activityIndicator = UIActivityIndicatorView(
             frame: CGRect(x: 0, y: 0, width: 50, height: 50)
         )
@@ -64,7 +64,7 @@ extension UIAlertController {
 }
 
 extension UIViewController {
-    private struct activityAlert {
+    private enum activityAlert {
         static var activityIndicatorAlert: UIAlertController?
     }
 

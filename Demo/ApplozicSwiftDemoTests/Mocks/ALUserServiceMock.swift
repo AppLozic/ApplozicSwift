@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 class ALUserServiceMock: ALUserService {

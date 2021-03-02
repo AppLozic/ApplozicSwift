@@ -156,8 +156,8 @@ extension FormTemplate {
             switch element.contentType {
             case .text:
                 guard let elementData = element.data,
-                    let label = elementData.label,
-                    let placeHolder = elementData.placeholder else { return }
+                      let label = elementData.label,
+                      let placeHolder = elementData.placeholder else { return }
                 items.append(FormViewModelTextItem(
                     label: label,
                     placeholder: placeHolder,
@@ -165,39 +165,39 @@ extension FormTemplate {
                 ))
             case .password:
                 guard let elementData = element.data,
-                    let label = elementData.label,
-                    let placeHolder = elementData.placeholder else { return }
+                      let label = elementData.label,
+                      let placeHolder = elementData.placeholder else { return }
                 items.append(FormViewModelPasswordItem(
                     label: label,
                     placeholder: placeHolder
                 ))
             case .singleSelect:
                 guard let elementData = element.data,
-                    let title = elementData.title,
-                    let options = elementData.options,
-                    let name = elementData.name else { return }
+                      let title = elementData.title,
+                      let options = elementData.options,
+                      let name = elementData.name else { return }
                 items.append(FormViewModelSingleselectItem(name: name,
                                                            title: title,
                                                            options: options))
             case .multiselect:
                 guard let elementData = element.data,
-                    let title = elementData.title,
-                    let options = elementData.options,
-                    let name = elementData.name else { return }
+                      let title = elementData.title,
+                      let options = elementData.options,
+                      let name = elementData.name else { return }
                 items.append(FormViewModelMultiselectItem(name: name,
                                                           title: title,
                                                           options: options))
             case .time:
                 guard let elementData = element.data,
-                    let label = elementData.label else { return }
+                      let label = elementData.label else { return }
                 items.append(FormViewModelTimeItem(label: label))
             case .date:
                 guard let elementData = element.data,
-                    let label = elementData.label else { return }
+                      let label = elementData.label else { return }
                 items.append(FormViewModelDateItem(label: label))
             case .dateTimeLocal:
                 guard let elementData = element.data,
-                    let label = elementData.label else { return }
+                      let label = elementData.label else { return }
                 items.append(FormViewModelDateTimeLocalItem(label: label))
             default:
                 print("\(element.contentType) form template type is not part of the form list view")

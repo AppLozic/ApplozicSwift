@@ -6,7 +6,7 @@
 //
 //
 
-import Applozic
+import ApplozicCore
 import UIKit
 
 class LoginViewController: UIViewController {

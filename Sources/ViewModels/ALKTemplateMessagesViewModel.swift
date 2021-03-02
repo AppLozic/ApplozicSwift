@@ -5,7 +5,7 @@
 //  Created by Mukesh Thawani on 27/12/17.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 open class ALKTemplateMessagesViewModel: NSObject {

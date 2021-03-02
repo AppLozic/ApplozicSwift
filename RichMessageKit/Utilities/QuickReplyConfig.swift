@@ -7,20 +7,20 @@
 import Foundation
 
 struct ChatCellPadding {
-    struct SentMessage {
-        struct Message {
+    enum SentMessage {
+        enum Message {
             static let left: CGFloat = 95
             static let right: CGFloat = 10
         }
 
-        struct QuickReply {
+        enum QuickReply {
             static let left: CGFloat = 75
             static let top: CGFloat = 5
             static let right: CGFloat = 10
             static let bottom: CGFloat = 5
         }
 
-        struct MessageButton {
+        enum MessageButton {
             static let left: CGFloat = 75
             static let right: CGFloat = 10
             static let top: CGFloat = 5
@@ -28,21 +28,21 @@ struct ChatCellPadding {
         }
     }
 
-    struct ReceivedMessage {
-        struct Message {
+    enum ReceivedMessage {
+        enum Message {
             static let left: CGFloat = 10
             static let right: CGFloat = 95
             static let top: CGFloat = 2
         }
 
-        struct QuickReply {
+        enum QuickReply {
             static let left: CGFloat = 5
             static let top: CGFloat = 5
             static let right: CGFloat = 10
             static let bottom: CGFloat = 5
         }
 
-        struct MessageButton {
+        enum MessageButton {
             static let left: CGFloat = 60
             static let right: CGFloat = 40
             static let top: CGFloat = 5

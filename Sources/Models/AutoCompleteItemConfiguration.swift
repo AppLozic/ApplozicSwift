@@ -32,8 +32,8 @@ public struct AutoCompleteItemConfiguration {
     public init() {}
 }
 
-extension AutoCompleteItemConfiguration {
-    public static var memberMention: AutoCompleteItemConfiguration {
+public extension AutoCompleteItemConfiguration {
+    static var memberMention: AutoCompleteItemConfiguration {
         var config = AutoCompleteItemConfiguration()
         config.textStyle = Style(
             font: UIFont.systemFont(ofSize: 14),

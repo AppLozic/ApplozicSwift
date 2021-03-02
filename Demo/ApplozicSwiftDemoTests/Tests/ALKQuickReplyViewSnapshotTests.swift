@@ -43,7 +43,7 @@ class ALKQuickReplyViewSnapshotTests: QuickSpec {
 
     func parseJson(string: String) throws -> [[String: Any]] {
         guard let data = string.data(using: .utf8),
-            let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [AnyObject]
+              let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [AnyObject]
         else {
             throw NSError(domain: NSCocoaErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid JSON"])
         }

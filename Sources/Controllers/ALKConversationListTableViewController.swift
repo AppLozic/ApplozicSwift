@@ -5,7 +5,7 @@
 //  Created by Shivam Pokhriyal on 29/11/18.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 /**
@@ -181,7 +181,7 @@ public class ALKConversationListTableViewController: UITableViewController, Loca
 
     override public func tableView(_: UITableView, viewForFooterInSection _: Int) -> UIView? {
         guard !hideNoConversationView,
-            let emptyCellView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ALKEmptyView.reuseIdentifier) as? ALKEmptyView
+              let emptyCellView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ALKEmptyView.reuseIdentifier) as? ALKEmptyView
         else {
             return nil
         }
@@ -768,8 +768,8 @@ extension ALKConversationListTableViewController: Muteable {
 
 // MARK: - SCROLL VIEW DELEGATE
 
-extension ALKConversationListTableViewController {
-    override public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+public extension ALKConversationListTableViewController {
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let height = scrollView.frame.size.height
         let contentYoffset = scrollView.contentOffset.y
         let reloadDistance: CGFloat = 40.0 // Added this so that loading starts 40 points before the end

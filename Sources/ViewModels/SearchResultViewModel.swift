@@ -6,7 +6,7 @@
 //  Copyright © 2019 CocoaPods. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 class BaseMessageViewModel: ALKConversationListViewModelProtocol {
@@ -32,7 +32,7 @@ class BaseMessageViewModel: ALKConversationListViewModelProtocol {
     func remove(message: ALMessage) {
         let messageToDelete = allMessages.filter { $0 == message }
         guard let messageDel = messageToDelete.first,
-            let index = allMessages.firstIndex(of: messageDel)
+              let index = allMessages.firstIndex(of: messageDel)
         else {
             return
         }
@@ -74,7 +74,7 @@ class BaseMessageViewModel: ALKConversationListViewModelProtocol {
 
     private func conversationProxyFrom(conversationId: NSNumber?) -> ALConversationProxy? {
         guard let convId = conversationId,
-            let conversationProxy = ALConversationService().getConversationByKey(convId)
+              let conversationProxy = ALConversationService().getConversationByKey(convId)
         else {
             return nil
         }

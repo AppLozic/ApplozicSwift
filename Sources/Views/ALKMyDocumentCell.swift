@@ -5,33 +5,33 @@
 //  Created by sunil on 05/03/19.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 import Kingfisher
 import UIKit
 
 class ALKMyDocumentCell: ALKDocumentCell {
     let appSettingsUserDefaults = ALKAppSettingsUserDefaults()
-    struct Padding {
-        struct StateView {
+    enum Padding {
+        enum StateView {
             static let trailing: CGFloat = 2
             static let bottom: CGFloat = 1
             static let height: CGFloat = 9
             static let width: CGFloat = 17
         }
 
-        struct AvatarImageView {
+        enum AvatarImageView {
             static let top: CGFloat = 18
             static let leading: CGFloat = 9
             static let height: CGFloat = 37
         }
 
-        struct TimeLabel {
+        enum TimeLabel {
             static let trailing: CGFloat = 2
             static let bottom: CGFloat = 0
         }
 
-        struct BubbleView {
+        enum BubbleView {
             static let top: CGFloat = 10
             static let leading: CGFloat = 57
             static let bottom: CGFloat = 7

@@ -5,7 +5,7 @@
 //  Created by apple on 18/10/19.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 import Kingfisher
 import UIKit
@@ -14,8 +14,8 @@ class ALKAttatchmentView: UIView {
     let loadingIndicator = ALKLoadingIndicator(frame: .zero, color: UIColor.gray)
     var message: ALMessage?
 
-    struct Padding {
-        struct ImgaeView {
+    enum Padding {
+        enum ImgaeView {
             static let bottom: CGFloat = 5.0
             static let left: CGFloat = 5.0
             static let right: CGFloat = 5.0
@@ -82,7 +82,7 @@ class ALKAttatchmentView: UIView {
         let serviceEnabled = ALApplozicSettings.isS3StorageServiceEnabled() || ALApplozicSettings.isGoogleCloudServiceEnabled()
 
         if let url = messageObject.fileMetaInfo?.url,
-            !serviceEnabled
+           !serviceEnabled
         {
             let httpManager = ALKHTTPManager()
             httpManager.downloadDelegate = self

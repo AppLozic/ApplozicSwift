@@ -16,8 +16,8 @@ public class SentMessageView: UIView {
     // MARK: Public properties
 
     /// Configuration to change width height and padding of views inside SentMessageView.
-    public struct Config {
-        public struct MessageView {
+    public enum Config {
+        public enum MessageView {
             /// Left padding of `MessageView` from `TimeLabel`
             public static var leftPadding: CGFloat = 2.0
             /// Bottom padding of `MessageView` from `TimeLabel`

@@ -33,7 +33,7 @@ public struct MessageStyle {
 }
 
 /// Message view theme.
-public struct MessageTheme {
+public enum MessageTheme {
     /// Message style for sent message
     public static var sentMessage = MessageStyle()
 
@@ -44,17 +44,17 @@ public struct MessageTheme {
     public static var messageStatus = SentMessageStatus()
 }
 
-extension MessageTheme {
-    public typealias MessageStatusType = MessageStatus
+public extension MessageTheme {
+    typealias MessageStatusType = MessageStatus
 
-    public enum StatusIcon {
+    enum StatusIcon {
         case templateImageWithTint(image: UIImage, tintColor: UIColor)
         case normalImage(image: UIImage)
         case none
     }
 
     /// Style information for Sent Message status(read receipt).
-    public struct SentMessageStatus {
+    struct SentMessageStatus {
         private(set) var statusIcons: [MessageStatusType: StatusIcon] = {
             var icons = [MessageStatusType: StatusIcon]()
             for option in MessageStatusType.allCases {

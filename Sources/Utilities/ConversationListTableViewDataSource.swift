@@ -5,7 +5,7 @@
 //  Created by Shivam Pokhriyal on 29/11/18.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 public class ConversationListTableViewDataSource: NSObject, UITableViewDataSource {

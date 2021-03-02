@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 protocol ALKHTTPManagerUploadDelegate: AnyObject {
@@ -19,7 +19,7 @@ protocol ALKHTTPManagerDownloadDelegate: AnyObject {
     func dataDownloadingFinished(task: ALKDownloadTask)
 }
 
-struct ThumbnailIdentifier {
+enum ThumbnailIdentifier {
     static let prefix = "THUMBNAIL_"
 
     static func hasPrefix(in identifier: String) -> Bool {
@@ -49,7 +49,7 @@ class ALKHTTPManager: NSObject {
     var uploadTask: ALKUploadTask?
     var downloadTask: ALKDownloadTask?
 
-    struct Constants {
+    enum Constants {
         static let thumbnailSuffix = "thumbnail_local"
         static let attachmentSuffix = "local"
         static let paramForS3Storage = "file"
@@ -61,7 +61,7 @@ class ALKHTTPManager: NSObject {
 
         ALResponseHandler.authenticateRequest(postURLRequest) { urlRequest, error in
             guard error == nil,
-                var request = urlRequest as URLRequest?
+                  var request = urlRequest as URLRequest?
             else {
                 print("Failed to upload the profile image")
                 return
@@ -161,7 +161,7 @@ class ALKHTTPManager: NSObject {
 
         ALResponseHandler.authenticateRequest(postURLRequest) { [weak self] urlRequest, error in
             guard error == nil,
-                var request = urlRequest as URLRequest?
+                  var request = urlRequest as URLRequest?
             else {
                 print("Failed to upload the attachment")
                 return

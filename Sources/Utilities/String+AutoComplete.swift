@@ -28,15 +28,15 @@ extension String {
     // at right whitespace(or endIndex).
     func word(at nsrange: NSRange) -> (word: String, range: Range<String.Index>)? {
         guard !isEmpty,
-            let range = Range(nsrange, in: self),
-            let parts = wordParts(range)
+              let range = Range(nsrange, in: self),
+              let parts = wordParts(range)
         else { return nil }
 
         // If the left-next character is whitespace, the "right word part" is the full word
         // short circuit with the right word part + its range
         if let characterBeforeRange = index(range.lowerBound, offsetBy: -1, limitedBy: startIndex),
-            let character = self[characterBeforeRange].unicodeScalars.first,
-            NSCharacterSet.whitespaces.contains(character)
+           let character = self[characterBeforeRange].unicodeScalars.first,
+           NSCharacterSet.whitespaces.contains(character)
         {
             let right = parts.right
             return (String(right), right.startIndex ..< right.endIndex)

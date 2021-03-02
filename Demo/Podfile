@@ -5,11 +5,13 @@ use_frameworks!
 
 target 'ApplozicSwiftDemo' do
     pod 'ApplozicSwift', :path => '../ApplozicSwift.podspec'
+    pod 'ApplozicCore', :git => 'https://github.com/AppLozic/Applozic-Chat-iOS-Framework.git', :branch => 'core-ui-test'
     pod 'SwiftLint'
 end
 
 target 'ApplozicSwiftDemoTests' do
     pod 'ApplozicSwift', :path => '../ApplozicSwift.podspec'
+    pod 'ApplozicCore', :git => 'https://github.com/AppLozic/Applozic-Chat-iOS-Framework.git', :branch => 'core-ui-test'
     pod 'Nimble'
     pod 'Quick'
     pod 'Nimble-Snapshots'

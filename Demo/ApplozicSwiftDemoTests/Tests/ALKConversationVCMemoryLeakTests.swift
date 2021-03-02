@@ -17,7 +17,7 @@ class ALKConversationVCMemoryLeakTests: QuickSpec {
 
         describe("when ALKConversationViewController is dismissed") {
             beforeEach {
-                waitUntil(timeout: 5.0) { done in
+                waitUntil(timeout: DispatchTimeInterval.seconds(5)) { done in
                     conversationVC = ALKConversationViewControllerMock(configuration: ALKConfiguration(), individualLaunch: true)
                     conversationVC?.viewModel = ALKConversationViewModel(contactId: "000", channelKey: nil, localizedStringFileName: ALKConfiguration().localizedStringFileName)
                     conversationVC?.contactService = ALContactServiceMock()

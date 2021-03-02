@@ -5,7 +5,7 @@
 //  Created by Shivam Pokhriyal on 19/04/19.
 //
 
-import Applozic
+import ApplozicCore
 import Contacts
 
 class ALKContactMessageBaseCell: ALKChatBaseCell<ALKMessageViewModel>, ALKHTTPManagerDownloadDelegate {

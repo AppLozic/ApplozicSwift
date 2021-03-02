@@ -23,7 +23,7 @@ class ViewControllerTestUtil<T: UIViewController> {
 
     func tearDownTopLevelUI() {
         guard let rootWindow = rootWindow,
-            let rootViewController = rootWindow.rootViewController as? T
+              let rootViewController = rootWindow.rootViewController as? T
         else {
             XCTFail("tearDownTopLevelUI() was called without setupTopLevelUI() being called first")
             return

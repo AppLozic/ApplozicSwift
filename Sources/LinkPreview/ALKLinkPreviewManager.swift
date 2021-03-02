@@ -46,8 +46,8 @@ class ALKLinkPreviewManager: NSObject, URLSessionDelegate {
                 var linkPreview: LinkPreviewMeta?
 
                 if let data = data, let urlResponse = response,
-                    let encoding = urlResponse.textEncodingName,
-                    let source = NSString(data: data, encoding: CFStringConvertEncodingToNSStringEncoding(CFStringConvertIANACharSetNameToEncoding(encoding as CFString)))
+                   let encoding = urlResponse.textEncodingName,
+                   let source = NSString(data: data, encoding: CFStringConvertEncodingToNSStringEncoding(CFStringConvertIANACharSetNameToEncoding(encoding as CFString)))
                 {
                     linkPreview = weakSelf.parseHtmlAndUpdateLinkPreviewMeta(text: source as String, baseUrl: url.absoluteString)
 
@@ -116,7 +116,7 @@ class ALKLinkPreviewManager: NSObject, URLSessionDelegate {
                     metatag.range(of: "itemprop='\(tag)") != nil
                 {
                     if let key = LinkPreviewMeta.Key(rawValue: tag),
-                        result.value(for: key) == nil
+                       result.value(for: key) == nil
                     {
                         if let value = LinkPreviewRegex.pregMatchFirst(metatag, pattern: LinkPreviewRegex.Pattern.Meta.content, index: 2) {
                             let value = value.decodedHtml.extendedTrim

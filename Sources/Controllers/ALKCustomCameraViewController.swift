@@ -131,7 +131,7 @@ final class ALKCustomCameraViewController: ALKBaseViewController, AVCapturePhoto
         let cameraOutput = self.cameraOutput as? AVCapturePhotoOutput
         if let connection = cameraOutput?.connection(with: AVMediaType.video) {
             if connection.isVideoOrientationSupported,
-                let orientation = AVCaptureVideoOrientation(orientation: UIDevice.current.orientation)
+               let orientation = AVCaptureVideoOrientation(orientation: UIDevice.current.orientation)
             {
                 connection.videoOrientation = orientation
             }
@@ -160,11 +160,11 @@ final class ALKCustomCameraViewController: ALKBaseViewController, AVCapturePhoto
         if let error = error {
             print(error)
         } else if let buffer = photoSampleBuffer,
-            let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(
-                forJPEGSampleBuffer: buffer,
-                previewPhotoSampleBuffer: nil
-            ),
-            let image = UIImage(data: data)
+                  let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(
+                      forJPEGSampleBuffer: buffer,
+                      previewPhotoSampleBuffer: nil
+                  ),
+                  let image = UIImage(data: data)
         {
             selectedImage = image
             switch cameraMode {
@@ -496,8 +496,8 @@ final class ALKCustomCameraViewController: ALKBaseViewController, AVCapturePhoto
 extension ALKCustomCameraViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     // MARK: CollectionViewEnvironment
 
-    private class CollectionViewEnvironment {
-        struct Spacing {
+    private enum CollectionViewEnvironment {
+        enum Spacing {
             static let lineitem: CGFloat = 5.0
             static let interitem: CGFloat = 0.0
             static let inset = UIEdgeInsets(top: 0.0, left: 6.0, bottom: 0.0, right: 6.0)

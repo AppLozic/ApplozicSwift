@@ -5,7 +5,7 @@
 //  Created by Shivam Pokhriyal on 05/12/18.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 import Kingfisher
 

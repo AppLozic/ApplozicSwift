@@ -10,8 +10,8 @@ import UIKit
 extension UITextView {
     func find(prefixes: Set<String>) -> (prefix: String, word: String, range: NSRange)? {
         guard !prefixes.isEmpty,
-            let result = wordAtCaret,
-            !result.word.isEmpty
+              let result = wordAtCaret,
+              !result.word.isEmpty
         else { return nil }
         for prefix in prefixes {
             if result.word.hasPrefix(prefix) {
@@ -23,7 +23,7 @@ extension UITextView {
 
     var wordAtCaret: (word: String, range: NSRange)? {
         guard let caretRange = self.caretRange,
-            let result = text.word(at: caretRange)
+              let result = text.word(at: caretRange)
         else { return nil }
 
         let range = NSRange(result.range, in: text)

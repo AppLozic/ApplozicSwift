@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - ALKRichMessageStyle
 
-public struct ALKRichMessageStyle {
+public enum ALKRichMessageStyle {
     static let styles: [ColorProtocol.Type] = [
         ALKListTemplateCell.ListStyle.self,
         ALKGenericCardCell.CardStyle.self,
@@ -28,9 +28,9 @@ public struct ALKRichMessageStyle {
     }
 }
 
-extension ALKListTemplateCell {
+public extension ALKListTemplateCell {
     /// `ListStyle` struct is used for config the sent and received list template color style
-    public struct ListStyle: ColorProtocol {
+    struct ListStyle: ColorProtocol {
         static var shared = ListStyle()
         static func setPrimaryColor(primaryColor: UIColor) {
             ALKListTemplateCell.ListStyle.shared.setColor(primaryColor)
@@ -73,9 +73,9 @@ extension ALKListTemplateCell {
     }
 }
 
-extension ALKGenericCardCell {
+public extension ALKGenericCardCell {
     /// `CardStyle` struct is used for config the sent and received  card template color style
-    public struct CardStyle: ColorProtocol {
+    struct CardStyle: ColorProtocol {
         static var shared = CardStyle()
         static func setPrimaryColor(primaryColor: UIColor) {
             CardStyle.shared.setColor(primaryColor: primaryColor)

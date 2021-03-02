@@ -7,7 +7,7 @@
 
 import Foundation
 
-import Applozic
+import ApplozicCore
 import Kingfisher
 
 class ALKReplyController: UIViewController, Localizable {
@@ -16,8 +16,8 @@ class ALKReplyController: UIViewController, Localizable {
         static let messageTextViewHeight = "messageTextViewHeight"
     }
 
-    struct Padding {
-        struct ModelView {
+    enum Padding {
+        enum ModelView {
             static let minHeightForMessageView: CGFloat = 230.0
             static let maxHeightForMessageView: CGFloat = 270.0
             static let heightForAttachmentView: CGFloat = 310.0
@@ -25,21 +25,21 @@ class ALKReplyController: UIViewController, Localizable {
             static let right: CGFloat = 30.0
         }
 
-        struct TitleLabel {
+        enum TitleLabel {
             static let top: CGFloat = 15.0
             static let left: CGFloat = 10.0
             static let right: CGFloat = 10.0
             static let height: CGFloat = 30.0
         }
 
-        struct MessageLabel {
+        enum MessageLabel {
             static let bottom: CGFloat = 12.0
             static let left: CGFloat = 15.0
             static let right: CGFloat = 15.0
             static let height: CGFloat = 50.0
         }
 
-        struct MessageTextView {
+        enum MessageTextView {
             static let top: CGFloat = 3.0
             static let left: CGFloat = 10.0
             static let right: CGFloat = 10.0
@@ -47,22 +47,22 @@ class ALKReplyController: UIViewController, Localizable {
             static let minHeight: CGFloat = 60.0
         }
 
-        struct AttachmentView {
+        enum AttachmentView {
             static let top: CGFloat = 3.0
             static let left: CGFloat = 10.0
             static let right: CGFloat = 10.0
             static let height: CGFloat = 150.0
         }
 
-        struct ButtonUIView {
+        enum ButtonUIView {
             static let height: CGFloat = 50.0
         }
 
-        struct ConfirmButton {
+        enum ConfirmButton {
             static let height: CGFloat = 50.0
         }
 
-        struct AvatarImage {
+        enum AvatarImage {
             static let top: CGFloat = 35.0
             static let left: CGFloat = 9.0
             static let width: CGFloat = 25.0

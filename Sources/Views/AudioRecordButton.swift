@@ -5,7 +5,8 @@
 //  Created by Shivam Pokhriyal on 17/08/18.
 //
 
-import Applozic
+import ApplozicCore
+import AVFoundation
 import Foundation
 
 public protocol ALKAudioRecorderProtocol: AnyObject {

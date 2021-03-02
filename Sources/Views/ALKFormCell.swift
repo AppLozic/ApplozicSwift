@@ -38,7 +38,7 @@ class ALKFormCell: ALKChatBaseCell<ALKMessageViewModel>, UITextFieldDelegate {
         }
         set(newFormData) {
             guard let key = identifier,
-                let formData = newFormData else { return }
+                  let formData = newFormData else { return }
             formDataCacheStore.set(formData, for: key)
         }
     }
@@ -81,7 +81,7 @@ class ALKFormCell: ALKChatBaseCell<ALKMessageViewModel>, UITextFieldDelegate {
         }
 
         guard let pickerMode = datePickerMode,
-            let dateSelectTap = onTapOfDateSelect
+              let dateSelectTap = onTapOfDateSelect
         else {
             return true
         }
@@ -97,8 +97,8 @@ class ALKFormCell: ALKChatBaseCell<ALKMessageViewModel>, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         activeTextField = nil
         guard let text = textField.text,
-            !text.trim().isEmpty,
-            let formSubmitData = formData
+              !text.trim().isEmpty,
+              let formSubmitData = formData
         else {
             if let data = formData {
                 data.textFields.removeValue(forKey: textField.tag)
@@ -158,7 +158,7 @@ extension ALKFormCell: UITableViewDataSource, UITableViewDelegate {
             cell.valueTextField.delegate = self
             cell.valueTextField.tag = indexPath.section
             if let formDataSubmit = formData,
-                let text = formDataSubmit.textFields[indexPath.section]
+               let text = formDataSubmit.textFields[indexPath.section]
             {
                 cell.valueTextField.text = text
             } else {
@@ -178,7 +178,7 @@ extension ALKFormCell: UITableViewDataSource, UITableViewDelegate {
             cell.valueTextField.delegate = self
             cell.valueTextField.tag = indexPath.section
             if let formDataSubmit = formData,
-                let text = formDataSubmit.textFields[indexPath.section]
+               let text = formDataSubmit.textFields[indexPath.section]
             {
                 cell.valueTextField.text = text
             } else {
@@ -204,8 +204,8 @@ extension ALKFormCell: UITableViewDataSource, UITableViewDelegate {
             cell.item = singleselectItem.options[indexPath.row]
 
             if let formDataSubmit = formData,
-                let singleSelectFields = formDataSubmit.singleSelectFields[indexPath.section],
-                singleSelectFields == indexPath.row
+               let singleSelectFields = formDataSubmit.singleSelectFields[indexPath.section],
+               singleSelectFields == indexPath.row
             {
                 cell.accessoryType = .checkmark
             } else {
@@ -240,7 +240,7 @@ extension ALKFormCell: UITableViewDataSource, UITableViewDelegate {
             }
 
             if let formDataSubmit = formData,
-                let multiSelectFields = formDataSubmit.multiSelectFields[indexPath.section], multiSelectFields.contains(indexPath.row)
+               let multiSelectFields = formDataSubmit.multiSelectFields[indexPath.section], multiSelectFields.contains(indexPath.row)
             {
                 cell.accessoryType = .checkmark
             } else {
@@ -345,8 +345,8 @@ extension ALKFormCell: ALKDatePickerButtonClickProtocol {
             break
         }
         guard let formSubmitData = formData,
-            timeInMillSecs > 0,
-            position < itemListView.numberOfSections
+              timeInMillSecs > 0,
+              position < itemListView.numberOfSections
         else {
             print("Can't be updated due to incorrect index")
             return
@@ -362,7 +362,7 @@ extension ALKFormCell {
         var isValid: Bool = true
 
         guard let formDataSubmit = formData,
-            let viewModelItems = template?.viewModeItems
+              let viewModelItems = template?.viewModeItems
         else {
             return false
         }
@@ -376,7 +376,7 @@ extension ALKFormCell {
                 let enteredText = formDataSubmit.textFields[index] ?? ""
 
                 if let validation = textFieldModel?.validation,
-                    let regxPattern = validation.regex
+                   let regxPattern = validation.regex
                 {
                     do {
                         isValid = try ALKRegexValidator.matchPattern(text: enteredText, pattern: regxPattern)

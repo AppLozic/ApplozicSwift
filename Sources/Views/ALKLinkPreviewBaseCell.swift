@@ -1,4 +1,4 @@
-import Applozic
+import ApplozicCore
 import Foundation
 
 class ALKLinkPreviewBaseCell: ALKMessageCell {

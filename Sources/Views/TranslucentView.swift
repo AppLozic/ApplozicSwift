@@ -106,7 +106,7 @@ open class TranslucentView: UIView {
 
 extension TranslucentView {
     // swiftlint:disable identifier_name
-    fileprivate func createUI() {
+    private func createUI() {
         ilColorBG = backgroundColor
 
         translucent = true
@@ -159,7 +159,7 @@ extension TranslucentView {
 
     // swiftlint:enable identifier_name
 
-    fileprivate func isItClearColor(_ color: UIColor) -> Bool {
+    private func isItClearColor(_ color: UIColor) -> Bool {
         var red: CGFloat = 0.0
         var green: CGFloat = 0.0
         var blue: CGFloat = 0.0

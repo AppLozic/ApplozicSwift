@@ -33,8 +33,8 @@ class ALKFriendPhotoCell: ALKPhotoCell {
         return label
     }()
 
-    struct Padding {
-        struct PhotoView {
+    enum Padding {
+        enum PhotoView {
             static let right: CGFloat = 56
         }
     }

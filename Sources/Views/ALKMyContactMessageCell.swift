@@ -5,23 +5,23 @@
 //  Created by Shivam Pokhriyal on 16/04/19.
 //
 
-import Applozic
+import ApplozicCore
 
 class ALKMyContactMessageCell: ALKContactMessageBaseCell {
-    struct Padding {
-        struct StateView {
+    enum Padding {
+        enum StateView {
             static let width: CGFloat = 17.0
             static let height: CGFloat = 9.0
             static let bottom: CGFloat = 1
             static let right: CGFloat = 2
         }
 
-        struct TimeLabel {
+        enum TimeLabel {
             static let right: CGFloat = 2
             static let bottom: CGFloat = 2
         }
 
-        struct ContactView {
+        enum ContactView {
             static let multiplier: CGFloat = 0.5
             static let right: CGFloat = 10
         }

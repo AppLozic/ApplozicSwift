@@ -5,7 +5,7 @@
 //  Created by Mukesh on 19/09/19.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 extension ALKConversationViewController: ALAlertButtonClickProtocol {
@@ -57,7 +57,7 @@ extension ALKConversationViewController: ALAlertButtonClickProtocol {
     func menuItemSelected(
         action: ALKChatBaseCell<ALKMessageViewModel>.MenuOption,
         message: ALKMessageViewModel
-    ){
+    ) {
         switch action {
         case .reply:
             print("Reply selected")

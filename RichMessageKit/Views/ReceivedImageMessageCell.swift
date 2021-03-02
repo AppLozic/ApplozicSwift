@@ -8,10 +8,10 @@
 import UIKit
 
 public class ReceivedImageMessageCell: UITableViewCell {
-    public struct Config {
+    public enum Config {
         public static var maxWidth = UIScreen.main.bounds.width
 
-        public struct MessageView {
+        public enum MessageView {
             /// Left padding of `MessageView` from `ProfileImage`
             public static var leftPadding: CGFloat = 10.0
 
@@ -25,7 +25,7 @@ public class ReceivedImageMessageCell: UITableViewCell {
             public static var rightPadding: CGFloat = 60.0
         }
 
-        public struct ProfileImage {
+        public enum ProfileImage {
             public static var width: CGFloat = 37.0
             public static var height: CGFloat = 37.0
             /// Top padding of `ProfileImage` from `DisplayName`
@@ -33,7 +33,7 @@ public class ReceivedImageMessageCell: UITableViewCell {
             public static var leftPadding: CGFloat = 10.0
         }
 
-        public struct TimeLabel {
+        public enum TimeLabel {
             /// Left padding of `TimeLabel` from `MessageView`
             public static var leftPadding: CGFloat = 2.0
             public static var maxWidth: CGFloat = 200.0
@@ -41,7 +41,7 @@ public class ReceivedImageMessageCell: UITableViewCell {
             public static var topPadding: CGFloat = 2.0
         }
 
-        public struct DisplayName {
+        public enum DisplayName {
             public static var height: CGFloat = 16.0
             public static var topPadding: CGFloat = 10.0
 
@@ -52,7 +52,7 @@ public class ReceivedImageMessageCell: UITableViewCell {
             public static var rightPadding: CGFloat = 20.0
         }
 
-        public struct ImageBubbleView {
+        public enum ImageBubbleView {
             public static var topPadding: CGFloat = 5.0
             public static var leftPadding: CGFloat = 10.0
         }

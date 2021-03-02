@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 let friendsMessage = "4"
@@ -36,7 +36,7 @@ extension ALMessage: ALKChatViewModelProtocol {
         // Later replace this with:
         // alChannelService.getChannelInformation(, orClientChannelKey: , withCompletion: )
         guard let groupId = groupId,
-            let alChannel = alChannelService.getChannelByKey(groupId)
+              let alChannel = alChannelService.getChannelByKey(groupId)
         else {
             return nil
         }
@@ -110,7 +110,7 @@ extension ALMessage: ALKChatViewModelProtocol {
             return isMessageEmpty ? "Photo" : message
         case .email:
             guard let channelMetadata = alChannel?.metadata,
-                let messageText = channelMetadata[ChannelMetadataKey.conversationSubject]
+                  let messageText = channelMetadata[ChannelMetadataKey.conversationSubject]
             else {
                 return message
             }
@@ -300,16 +300,16 @@ extension ALMessage {
         // Returns lat, long
         func getCoordinates(from message: String) -> (Any, Any)? {
             guard let messageData = message.data(using: .utf8),
-                let jsonObject = try? JSONSerialization.jsonObject(
-                    with: messageData,
-                    options: .mutableContainers
-                ),
-                let messageJSON = jsonObject as? [String: Any]
+                  let jsonObject = try? JSONSerialization.jsonObject(
+                      with: messageData,
+                      options: .mutableContainers
+                  ),
+                  let messageJSON = jsonObject as? [String: Any]
             else {
                 return nil
             }
             guard let lat = messageJSON["lat"],
-                let lon = messageJSON["lon"]
+                  let lon = messageJSON["lon"]
             else {
                 return nil
             }
@@ -317,21 +317,21 @@ extension ALMessage {
         }
 
         guard let message = message,
-            let (lat, lon) = getCoordinates(from: message)
+              let (lat, lon) = getCoordinates(from: message)
         else {
             return nil
         }
         // Check if type is double or string
         if let lat = lat as? Double,
-            let lon = lon as? Double
+           let lon = lon as? Double
         {
             let location = CLLocationCoordinate2D(latitude: lat, longitude: lon)
             return Geocode(coordinates: location)
         } else {
             guard let latString = lat as? String,
-                let lonString = lon as? String,
-                let lat = Double(latString),
-                let lon = Double(lonString)
+                  let lonString = lon as? String,
+                  let lat = Double(latString),
+                  let lon = Double(lonString)
             else {
                 return nil
             }
@@ -359,8 +359,8 @@ extension ALMessage {
 
     private func richMessageType() -> ALKMessageType {
         guard let metadata = metadata,
-            let contentType = metadata["contentType"] as? String, contentType == "300",
-            let templateId = metadata["templateId"] as? String
+              let contentType = metadata["contentType"] as? String, contentType == "300",
+              let templateId = metadata["templateId"] as? String
         else {
             switch Int32(self.contentType) {
             case ALMESSAGE_CONTENT_DEFAULT:
@@ -405,8 +405,8 @@ extension ALMessage {
     }
 }
 
-extension ALMessage {
-    public var messageModel: ALKMessageModel {
+public extension ALMessage {
+    var messageModel: ALKMessageModel {
         let messageModel = ALKMessageModel()
         messageModel.message = message
         messageModel.isMyMessage = isMyMessage

@@ -5,9 +5,11 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import AVFoundation
 import AVKit
+import ContactsUI
+import MobileCoreServices
 import SafariServices
 import UIKit
 
@@ -19,8 +21,8 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         willSet(updatedVM) {
             guard viewModel != nil else { return }
             if updatedVM.contactId == viewModel.contactId,
-                updatedVM.channelKey == viewModel.channelKey,
-                updatedVM.conversationProxy == viewModel.conversationProxy
+               updatedVM.channelKey == viewModel.channelKey,
+               updatedVM.conversationProxy == viewModel.conversationProxy
             {
                 isFirstTime = false
             } else {
@@ -328,8 +330,8 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
             guard weakSelf.viewModel.isGroup else { return }
             let alChannelService = ALChannelService()
             guard let key = weakSelf.viewModel.channelKey,
-                let channel = alChannelService.getChannelByKey(key),
-                channel.name != nil
+                  let channel = alChannelService.getChannelByKey(key),
+                  channel.name != nil
             else {
                 return
             }
@@ -710,14 +712,10 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         // Update background view's color which contains all the attachment options.
         chatBar.bottomBackgroundColor = configuration.chatBarAttachmentViewBackgroundColor
 
-        chatBar.poweredByMessageLabel.attributedText =
-            NSAttributedString(string: "Powered by Applozic")
-        chatBar.poweredByMessageLabel.setLinkForSubstring("Applozic", withLinkHandler: {
-            [weak self] _, substring in
-            guard substring != nil else { return }
-            let svc = SFSafariViewController(url: URL(string: "https://Applozic.com")!)
-            self?.present(svc, animated: true, completion: nil)
-        })
+        chatBar.poweredByMessageTextView.hyperLink(mutableAttributedString: NSMutableAttributedString(string: "Powered by Applozic"),
+                                                   url: URL(string: "https://Applozic.com")!,
+                                                   clickString: "Applozic")
+
         if viewModel.showPoweredByMessage() { chatBar.showPoweredByMessage() }
         chatBar.accessibilityIdentifier = "chatBar"
         chatBar.setComingSoonDelegate(delegate: view)
@@ -837,14 +835,15 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
                                     withDefaultValue: SystemMessage.Camera.cameraPermission,
                                     fileName: weakSelf.localizedStringFileName
                                 )
-                                ALUtilityClass.permissionPopUp(withMessage: msg, andViewController: self)
+                                let title = weakSelf.localizedString(forKey: "Settings", withDefaultValue: SystemMessage.LabelName.Settings, fileName: weakSelf.localizedStringFileName)
+                                weakSelf.showAlertForApplicationSettings(title: title, message: msg)
                             }
                         }
                     })
                 } else {
                     let msg = weakSelf.localizedString(forKey: "CameraNotAvailableMessage", withDefaultValue: SystemMessage.Camera.CamNotAvailable, fileName: weakSelf.localizedStringFileName)
                     let title = weakSelf.localizedString(forKey: "CameraNotAvailableTitle", withDefaultValue: SystemMessage.Camera.camNotAvailableTitle, fileName: weakSelf.localizedStringFileName)
-                    ALUtilityClass.showAlertMessage(msg, andTitle: title)
+                    weakSelf.showAlertForApplicationSettings(title: title, message: msg)
                 }
             case .showImagePicker:
                 if #available(iOS 14, *), weakSelf.configuration.isNewSystemPhotosUIEnabled {
@@ -958,7 +957,7 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         viewModel.channelKey = notificationData.groupId
         var convProxy: ALConversationProxy?
         if let convId = notificationData.conversationId,
-            let conversationProxy = ALConversationService().getConversationByKey(convId)
+           let conversationProxy = ALConversationService().getConversationByKey(convId)
         {
             convProxy = conversationProxy
         }
@@ -1219,8 +1218,8 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
             return
         }
         guard let payload = message.payloadFromMetadata()?[index],
-            let action = payload["action"] as? [String: Any],
-            let type = action["type"] as? String
+              let action = payload["action"] as? [String: Any],
+              let type = action["type"] as? String
         else {
             return
         }
@@ -1246,9 +1245,9 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         isButtonClickDisabled: Bool
     ) {
         guard !isButtonClickDisabled,
-            let selectedButton = message.payloadFromMetadata()?[index],
-            let buttonTitle = selectedButton["name"] as? String,
-            buttonTitle == title
+              let selectedButton = message.payloadFromMetadata()?[index],
+              let buttonTitle = selectedButton["name"] as? String,
+              buttonTitle == title
         else {
             return
         }
@@ -1333,15 +1332,25 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
     }
 
     func openContact(_ contact: CNContact) {
-        CNContactStore().requestAccess(for: .contacts) { granted, _ in
+        CNContactStore().requestAccess(for: .contacts) { [weak self] granted, _ in
+            guard let weakSelf = self else {
+                return
+            }
             if granted {
                 let vc = CNContactViewController(forUnknownContact: contact)
                 vc.contactStore = CNContactStore()
                 let nav = UINavigationController(rootViewController: vc)
-                vc.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissContact))
-                self.present(nav, animated: true, completion: nil)
+                vc.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: weakSelf, action: #selector(self?.dismissContact))
+                weakSelf.present(nav, animated: true, completion: nil)
             } else {
-                ALUtilityClass.permissionPopUp(withMessage: "Enable Contact permission", andViewController: self)
+                let title = weakSelf.localizedString(forKey: "Settings", withDefaultValue: SystemMessage.LabelName.Settings, fileName: weakSelf.localizedStringFileName)
+
+                let message = weakSelf.localizedString(
+                    forKey: "EnableContactPermissionMessage",
+                    withDefaultValue: SystemMessage.Contact.permissionMessage,
+                    fileName: weakSelf.localizedStringFileName
+                )
+                weakSelf.showAlertForApplicationSettings(title: title, message: message)
             }
         }
     }
@@ -1349,11 +1358,12 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
     func openRichMessageImageView(imageUrl: URL) {
         let storyboard = UIStoryboard.name(storyboard: UIStoryboard.Storyboard.previewImage, bundle: Bundle.applozic)
         guard let nav = storyboard.instantiateInitialViewController() as? ALKBaseNavigationViewController,
-              let vc = nav.viewControllers.first as? ALKPreviewImageViewController else {
+              let vc = nav.viewControllers.first as? ALKPreviewImageViewController
+        else {
             return
         }
-        vc.configuration = self.configuration
-        vc.viewModel = ALKPreviewImageViewModel(imageUrl: imageUrl, localizedStringFileName: self.configuration.localizedStringFileName)
+        vc.configuration = configuration
+        vc.viewModel = ALKPreviewImageViewModel(imageUrl: imageUrl, localizedStringFileName: configuration.localizedStringFileName)
         UIViewController.topViewController()?.present(nav, animated: true, completion: nil)
     }
 
@@ -1529,17 +1539,17 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
 
     func formSubmitButtonSelected(formSubmitData: FormDataSubmit?, messageModel: ALKMessageViewModel, isButtonClickDisabled: Bool) {
         guard let formData = formSubmitData,
-            !formData.multiSelectFields.isEmpty ||
-            !formData.textFields.isEmpty ||
-            !formData.singleSelectFields.isEmpty ||
-            !formData.dateFields.isEmpty
+              !formData.multiSelectFields.isEmpty ||
+              !formData.textFields.isEmpty ||
+              !formData.singleSelectFields.isEmpty ||
+              !formData.dateFields.isEmpty
         else {
             print("Invalid empty form data for submit")
             return
         }
 
         guard !isButtonClickDisabled,
-            let formTemplate = messageModel.formTemplate()
+              let formTemplate = messageModel.formTemplate()
         else {
             return
         }
@@ -1550,16 +1560,16 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
 
         for element in formTemplate.elements {
             if element.contentType == .hidden,
-                let elementData = element.data,
-                let hiddenName = elementData.name,
-                let hiddenValue = elementData.value
+               let elementData = element.data,
+               let hiddenName = elementData.name,
+               let hiddenValue = elementData.value
             {
                 postFormData[hiddenName] = hiddenValue
             }
 
             if element.contentType == .submit,
-                let elementData = element.data,
-                let action = elementData.action
+               let elementData = element.data,
+               let action = elementData.action
             {
                 if let formTemplateRequest = action.requestType {
                     requestType = formTemplateRequest
@@ -1647,7 +1657,7 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         }
 
         if let type = requestType,
-            type == "postBackToBotPlatform"
+           type == "postBackToBotPlatform"
         {
             if let messageString = message {
                 viewModel.send(message: messageString, metadata: chatContextData)
@@ -1665,9 +1675,9 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
             }
             var request: URLRequest!
             guard let jsonData = try? JSONSerialization.data(withJSONObject: chatContextData),
-                let jsonString = String(data: jsonData, encoding: .utf8),
-                let data = jsonString.data(using: .utf8),
-                let urlRequest = postRequestUsing(url: url, data: data)
+                  let jsonString = String(data: jsonData, encoding: .utf8),
+                  let data = jsonString.data(using: .utf8),
+                  let urlRequest = postRequestUsing(url: url, data: data)
             else { return }
 
             request = urlRequest
@@ -1712,7 +1722,14 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
                     vc.delegate = self
                     self.present(vc, animated: true, completion: nil)
                 } else {
-                    ALUtilityClass.permissionPopUp(withMessage: "Enable Contact permission", andViewController: self)
+                    let title = self.localizedString(forKey: "Settings", withDefaultValue: SystemMessage.LabelName.Settings, fileName: self.localizedStringFileName)
+
+                    let message = self.localizedString(
+                        forKey: "EnableContactPermissionMessage",
+                        withDefaultValue: SystemMessage.Contact.permissionMessage,
+                        fileName: self.localizedStringFileName
+                    )
+                    self.showAlertForApplicationSettings(title: title, message: message)
                 }
             }
         }
@@ -1780,6 +1797,24 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
                                                            localizedStringFileName: localizedStringFileName)
         datePickerVC.modalPresentationStyle = .overCurrentContext
         present(datePickerVC, animated: true, completion: nil)
+    }
+
+    private func showAlertForApplicationSettings(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let settingsTitle = localizedString(forKey: "Settings", withDefaultValue: SystemMessage.LabelName.Settings, fileName: localizedStringFileName)
+        let settingsAction = UIAlertAction(title: settingsTitle, style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: nil)
+            }
+        }
+        alertController.addAction(settingsAction)
+        let cancelTitle = localizedString(forKey: "Cancel", withDefaultValue: SystemMessage.LabelName.Cancel, fileName: localizedStringFileName)
+        let cancelAction = UIAlertAction(title: cancelTitle, style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 

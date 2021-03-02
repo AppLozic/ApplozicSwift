@@ -5,7 +5,7 @@
 //  Created by Mukesh Thawani on 03/07/18.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 extension ALKConversationViewController: ALKCustomCameraProtocol {

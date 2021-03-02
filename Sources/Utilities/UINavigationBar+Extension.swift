@@ -17,12 +17,12 @@ extension UINavigationBar {
     }
 }
 
-extension UIView {
-    fileprivate var hairlineImageView: UIImageView? {
+private extension UIView {
+    var hairlineImageView: UIImageView? {
         return hairlineImageView(in: self)
     }
 
-    fileprivate func hairlineImageView(in view: UIView) -> UIImageView? {
+    func hairlineImageView(in view: UIView) -> UIImageView? {
         if let imageView = view as? UIImageView, imageView.bounds.height <= 1.0 {
             return imageView
         }

@@ -5,7 +5,7 @@
 //  Created by Shivam Pokhriyal on 15/10/18.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 @objc protocol Muteable: AnyObject {

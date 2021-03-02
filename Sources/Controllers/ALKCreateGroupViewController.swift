@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import Kingfisher
 import UIKit
 
@@ -565,7 +565,7 @@ extension ALKCreateGroupViewController: ALKAddParticipantProtocol {
 
     func profileTappedAt(index: IndexPath) {
         guard addContactMode == .existingChat,
-            index.row < groupList.count else { return }
+              index.row < groupList.count else { return }
         let user = groupList[index.row]
         let viewModel = ALKConversationViewModel(
             contactId: user.friendUUID,

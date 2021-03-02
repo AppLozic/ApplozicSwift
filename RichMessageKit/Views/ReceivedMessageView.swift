@@ -15,8 +15,8 @@ public class ReceivedMessageView: UIView {
     // MARK: Public properties
 
     /// Configuration to change width height and padding of views inside ReceivedMessageView.
-    public struct Config {
-        public struct MessageView {
+    public enum Config {
+        public enum MessageView {
             /// Left padding of `MessageView` from `ProfileImage`
             public static var leftPadding: CGFloat = 10.0
 

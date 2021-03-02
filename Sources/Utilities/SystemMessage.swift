@@ -10,7 +10,7 @@ import Foundation
 
 // handle all in app's display messages
 struct SystemMessage: Localizable {
-    struct Camera {
+    enum Camera {
         static let cameraPermission = localizedString(forKey: "EnableCameraPermissionMessage")
         static let CamNotAvailable = localizedString(forKey: "CameraNotAvailableMessage")
         static let camNotAvailableTitle = localizedString(forKey: "CameraNotAvailableTitle")
@@ -20,7 +20,11 @@ struct SystemMessage: Localizable {
         static let PleaseAllowCamera = localizedString(forKey: "PleaseAllowCamera")
     }
 
-    struct Microphone {
+    enum Contact {
+        static let permissionMessage = localizedString(forKey: "EnableContactPermissionMessage")
+    }
+
+    enum Microphone {
         static let MicNotAvailable = localizedString(forKey: "MicrophoneNotAvailableMessage")
         static let PleaseAllowMic = localizedString(forKey: "AllowSoundRecordingMessage")
         static let SlideToCancel = localizedString(forKey: "SlideToCancelMessage")
@@ -28,12 +32,12 @@ struct SystemMessage: Localizable {
         static let SpeechToTextPlaceholder = localizedString(forKey: "SpeechToTextPlaceholder")
     }
 
-    struct Map {
+    enum Map {
         static let ShareLocationTitle = localizedString(forKey: "ShareLocationTitle")
         static let SendLocationButton = localizedString(forKey: "SendLocationButton")
     }
 
-    struct Information {
+    enum Information {
         static let FriendAdded = localizedString(forKey: "FriendAddedMessage")
         static let FriendRemoved = localizedString(forKey: "FriendRemovedMessage")
         static let AppName = ""
@@ -50,14 +54,14 @@ struct SystemMessage: Localizable {
         static let ExportLoadingIndicatorText = localizedString(forKey: "ExportLoadingIndicatorText")
     }
 
-    struct Update {
+    enum Update {
         static let CheckRequiredField = localizedString(forKey: "CheckImageAndNameField")
         static let UpdateMood = localizedString(forKey: "UpdateMoodMessage")
         static let UpdateProfileName = localizedString(forKey: "UpdateProfileSuccessMessage")
         static let Failed = localizedString(forKey: "FailedToUpdateMessage")
     }
 
-    struct Warning {
+    enum Warning {
         static let NoEmail = localizedString(forKey: "EnterEmailMessage")
         static let InvalidEmail = localizedString(forKey: "InvalidEmailMessage")
         static let FillInAllFields = localizedString(forKey: "Please fill-in all fields")
@@ -83,7 +87,7 @@ struct SystemMessage: Localizable {
         static let videoExportError = localizedString(forKey: "VideoExportError")
     }
 
-    struct ButtonName {
+    enum ButtonName {
         static let SignOut = localizedString(forKey: "SignOutButtonName")
         static let Retry = localizedString(forKey: "RetryButtonName")
         static let Remove = localizedString(forKey: "RemoveButtonName")
@@ -103,16 +107,16 @@ struct SystemMessage: Localizable {
         static let okay = localizedString(forKey: "OkayMessage")
     }
 
-    struct NoData {
+    enum NoData {
         static let NoName = localizedString(forKey: "NoNameMessage")
     }
 
-    struct UIError {
+    enum UIError {
         static let unspecifiedLocation = localizedString(forKey: "UnspecifiedLocation")
         static let InvalidDatErrorInForm = localizedString(forKey: "InvalidDatErrorInForm")
     }
 
-    struct PhotoAlbum {
+    enum PhotoAlbum {
         static let Success = localizedString(forKey: "PhotoAlbumSuccess")
         static let Fail = localizedString(forKey: "PhotoAlbumFail")
         static let SuccessTitle = localizedString(forKey: "PhotoAlbumSuccessTitle")
@@ -121,29 +125,29 @@ struct SystemMessage: Localizable {
         static let PreviewTitle = localizedString(forKey: "RichMessageImagePreviewTitle")
     }
 
-    struct Message {
+    enum Message {
         static let isTypingForRTL = localizedString(forKey: "IsTypingForRTL")
         static let isTyping = localizedString(forKey: "IsTyping")
         static let areTyping = localizedString(forKey: "AreTyping")
     }
 
-    struct ChatList {
+    enum ChatList {
         static let title = localizedString(forKey: "ConversationListVCTitle")
         static let NoConversationsLabelText = localizedString(forKey: "NoConversationsLabelText")
         static let leftBarBackButton = localizedString(forKey: "Back")
     }
 
-    struct Chat {
+    enum Chat {
         static let somebody = localizedString(forKey: "Somebody")
     }
 
-    struct NavbarTitle {
+    enum NavbarTitle {
         static let createGroupTitle = localizedString(forKey: "CreateGroupTitle")
         static let editGroupTitle = localizedString(forKey: "EditGroupTitle")
         static let emailWebViewTitle = localizedString(forKey: "EmailWebViewTitle")
     }
 
-    struct LabelName {
+    enum LabelName {
         static let Edit = localizedString(forKey: "Edit")
         static let Participants = localizedString(forKey: "Participants")
         static let TypeGroupName = localizedString(forKey: "TypeGroupName")
@@ -170,7 +174,7 @@ struct SystemMessage: Localizable {
         static let DatePickerDateAndTimeTitle = localizedString(forKey: "DatePickerDateAndTimeTitle")
     }
 
-    struct Mute {
+    enum Mute {
         static let MuteUser = localizedString(forKey: "MuteUser")
         static let MuteChannel = localizedString(forKey: "MuteChannel")
         static let UnmuteUser = localizedString(forKey: "UnmuteUser")
@@ -179,13 +183,13 @@ struct SystemMessage: Localizable {
         static let UnmuteButton = localizedString(forKey: "UnmuteButton")
     }
 
-    struct MutePopup {
+    enum MutePopup {
         static let EightHour = localizedString(forKey: "EightHour")
         static let OneWeek = localizedString(forKey: "OneWeek")
         static let OneYear = localizedString(forKey: "OneYear")
     }
 
-    struct UserStatus {
+    enum UserStatus {
         static let Online = localizedString(forKey: "Online")
         static let LastSeen = localizedString(forKey: "LastSeen")
         static let JustNow = localizedString(forKey: "JustNow")
@@ -193,7 +197,7 @@ struct SystemMessage: Localizable {
         static let HoursAgo = localizedString(forKey: "HoursAgo")
     }
 
-    struct Block {
+    enum Block {
         static let BlockTitle = localizedString(forKey: "BlockTitle")
         static let UnblockTitle = localizedString(forKey: "UnblockTitle")
         static let BlockUser = localizedString(forKey: "BlockUser")
@@ -204,7 +208,7 @@ struct SystemMessage: Localizable {
         static let UnblockSuccess = localizedString(forKey: "UnblockSuccess")
     }
 
-    struct GroupDetails {
+    enum GroupDetails {
         static let AddParticipant = localizedString(forKey: "AddParticipant")
         static let RemoveUser = localizedString(forKey: "RemoveUser")
         static let MakeAdmin = localizedString(forKey: "MakeAdmin")

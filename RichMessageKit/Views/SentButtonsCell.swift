@@ -181,7 +181,7 @@ public class SentButtonsCell: UITableViewCell {
         _ size: CGSize = CGSize(width: 17, height: 9)
     ) {
         guard let status = model.message.status,
-            let statusIcon = style.statusIcons[status] else { return }
+              let statusIcon = style.statusIcons[status] else { return }
         switch statusIcon {
         case let .templateImageWithTint(image, tintColor):
             statusView.image = image

@@ -8,7 +8,7 @@
 
 import XCTest
 
-import Applozic
+import ApplozicCore
 @testable import ApplozicSwift
 
 class ALMessageTests: XCTestCase {

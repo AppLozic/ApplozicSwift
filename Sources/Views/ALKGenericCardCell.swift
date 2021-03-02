@@ -20,7 +20,7 @@ open class ALKGenericCardCollectionView: ALKIndexedCollectionView {
 
     override open class func rowHeightFor(message: ALKMessageViewModel, width: CGFloat) -> CGFloat {
         guard let template = getCardTemplate(message: message),
-            let card = template.first
+              let card = template.first
         else {
             return 0
         }
@@ -65,7 +65,7 @@ open class ALKGenericCardCollectionView: ALKIndexedCollectionView {
 }
 
 open class ALKGenericCardCell: UICollectionViewCell {
-    public struct Font {
+    public enum Font {
         public static var overlayText = UIFont(name: "HelveticaNeue-Medium", size: 16) ??
             UIFont.systemFont(ofSize: 16)
 
@@ -84,7 +84,7 @@ open class ALKGenericCardCell: UICollectionViewCell {
         public static var button = UIFont.systemFont(ofSize: 15, weight: .medium)
     }
 
-    public struct Config {
+    public enum Config {
         public static let buttonHeight: CGFloat = 40
 
         public static let imageHeight: CGFloat = 100
@@ -93,10 +93,11 @@ open class ALKGenericCardCell: UICollectionViewCell {
 
         public static let buttonStackViewSpacing: CGFloat = 1
 
-        public struct OverlayText {
+        public enum OverlayText {
             public static let width: CGFloat = 80
             public static let height: CGFloat = 35
         }
+
         /// The number of lines for the card description label. The default value for this is 3.
         public static var descriptionMaxLines = 3
     }
@@ -209,7 +210,7 @@ open class ALKGenericCardCell: UICollectionViewCell {
 
     private class func headerHeight(_ header: CardTemplate.Header) -> CGFloat {
         guard let urlString = header.imgSrc,
-            URL(string: urlString) != nil
+              URL(string: urlString) != nil
         else {
             if let text = header.overlayText, !text.isEmpty {
                 return Config.OverlayText.height

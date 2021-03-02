@@ -26,14 +26,14 @@ public struct ALKNavigationItem {
     }
 }
 
-extension ALKNavigationItem {
+public extension ALKNavigationItem {
     ///  Convenience initializer for creating `ALKNavigationItem` with text.
     ///
     /// - Parameters:
     ///   - identifier: A unique identifier, that will be part of the tap
     ///                 notification for identifying the tapped button.
     ///   - text: The text of this item.
-    public init(identifier: Int, text: String) {
+    init(identifier: Int, text: String) {
         self.init(identifier: identifier, buttonText: text)
     }
 
@@ -43,13 +43,13 @@ extension ALKNavigationItem {
     ///   - identifier: A unique identifier, that will be part of the tap
     ///                 notification for identifying the tapped button.
     ///   - icon:  The icon of this item.
-    public init(identifier: Int, icon: UIImage) {
+    init(identifier: Int, icon: UIImage) {
         self.init(identifier: identifier, buttonImage: icon)
     }
 }
 
-extension ALKNavigationItem {
-    public func barButton(target: Any, action: Selector) -> UIBarButtonItem? {
+public extension ALKNavigationItem {
+    func barButton(target: Any, action: Selector) -> UIBarButtonItem? {
         guard let image = self.buttonImage else {
             guard let text = buttonText else {
                 return nil

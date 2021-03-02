@@ -25,8 +25,8 @@ final class ALKMyPhotoPortalCell: ALKPhotoCell {
         return sv
     }()
 
-    struct Padding {
-        struct PhotoView {
+    enum Padding {
+        enum PhotoView {
             static let right: CGFloat = 14
             static let top: CGFloat = 6
         }

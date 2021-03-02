@@ -12,36 +12,36 @@ import Foundation
 }
 
 class ALKFormDatePickerViewController: UIViewController, Localizable {
-    struct Padding {
-        struct ModelView {
+    enum Padding {
+        enum ModelView {
             static let left: CGFloat = 30.0
             static let right: CGFloat = 30.0
             static let bottomY: CGFloat = 50.0
         }
 
-        struct TitleLabel {
+        enum TitleLabel {
             static let top: CGFloat = 20.0
             static let left: CGFloat = 10.0
             static let right: CGFloat = 10.0
         }
 
-        struct DatePickerView {
+        enum DatePickerView {
             static let top: CGFloat = 20.0
             static let left: CGFloat = 10.0
             static let right: CGFloat = 10.0
             static let bottom: CGFloat = 30.0
         }
 
-        struct ButtonUIView {
+        enum ButtonUIView {
             static let height: CGFloat = 40.0
             static let top: CGFloat = 10.0
         }
 
-        struct CancelButton {
+        enum CancelButton {
             static let height: CGFloat = 40.0
         }
 
-        struct ConfirmButton {
+        enum ConfirmButton {
             static let height: CGFloat = 40.0
             static let left: CGFloat = 3.0
         }

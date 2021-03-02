@@ -19,7 +19,7 @@ public struct AutoCompleteItem {
     }
 }
 
-extension AutoCompleteItem {
+public extension AutoCompleteItem {
     /// A key used for referencing which substrings were autocompletes
-    public static let attributesKey = NSAttributedString.Key("com.applozicswift.autocompletekey")
+    static let attributesKey = NSAttributedString.Key("com.applozicswift.autocompletekey")
 }

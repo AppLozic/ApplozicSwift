@@ -5,7 +5,7 @@
 //  Created by Mukesh Thawani on 10/10/17.
 //
 
-import Applozic
+import ApplozicCore
 import Kingfisher
 import MapKit
 import UIKit

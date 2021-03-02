@@ -7,41 +7,41 @@
 
 import Foundation
 
-import Applozic
+import ApplozicCore
 
 class ALKAlertViewController: UIViewController, Localizable {
-    public struct Action {
+    public enum Action {
         static let reportMessage: String = "REPORT_MESSAGE"
     }
 
-    public struct Padding {
-        struct ModelView {
+    public enum Padding {
+        enum ModelView {
             static let height: CGFloat = 200.0
             static let left: CGFloat = 30.0
             static let right: CGFloat = 30.0
         }
 
-        struct TitleLabel {
+        enum TitleLabel {
             static let top: CGFloat = 30.0
             static let left: CGFloat = 10.0
             static let right: CGFloat = 10.0
         }
 
-        struct MessageLabel {
+        enum MessageLabel {
             static let top: CGFloat = 12.0
             static let left: CGFloat = 20.0
             static let right: CGFloat = 20.0
         }
 
-        struct ButtonUIView {
+        enum ButtonUIView {
             static let height: CGFloat = 50.0
         }
 
-        struct CancelButton {
+        enum CancelButton {
             static let height: CGFloat = 50.0
         }
 
-        struct ConfirmButton {
+        enum ConfirmButton {
             static let height: CGFloat = 50.0
             static let left: CGFloat = 3.0
         }

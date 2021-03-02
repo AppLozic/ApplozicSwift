@@ -157,9 +157,9 @@ final class ALKMediaViewerViewController: UIViewController {
 
     func showPhotoView(message: ALKMessageViewModel) {
         guard let filePath = message.filePath,
-            let url = viewModel?.getURLFor(name: filePath),
-            let imageData = try? Data(contentsOf: url),
-            let image = UIImage(data: imageData)
+              let url = viewModel?.getURLFor(name: filePath),
+              let imageData = try? Data(contentsOf: url),
+              let image = UIImage(data: imageData)
         else {
             return
         }
@@ -172,7 +172,7 @@ final class ALKMediaViewerViewController: UIViewController {
 
     func showVideoView(message: ALKMessageViewModel) {
         guard let filePath = message.filePath,
-            let url = viewModel?.getURLFor(name: filePath) else { return }
+              let url = viewModel?.getURLFor(name: filePath) else { return }
         let fileUtills = ALKFileUtils()
         imageView.image = fileUtills.getThumbnail(filePath: url)
         imageView.sizeToFit()
@@ -180,7 +180,7 @@ final class ALKMediaViewerViewController: UIViewController {
         audioPlayButton.isHidden = true
         audioIcon.isHidden = true
         guard let viewModel = viewModel,
-            viewModel.isAutoPlayTrueForCurrentIndex() else { return }
+              viewModel.isAutoPlayTrueForCurrentIndex() else { return }
         playVideo()
         viewModel.currentIndexAudioVideoPlayed()
     }
@@ -191,7 +191,7 @@ final class ALKMediaViewerViewController: UIViewController {
         playButton.isHidden = true
         audioIcon.isHidden = false
         guard let viewModel = viewModel,
-            viewModel.isAutoPlayTrueForCurrentIndex() else { return }
+              viewModel.isAutoPlayTrueForCurrentIndex() else { return }
         playAudio()
         viewModel.currentIndexAudioVideoPlayed()
     }
@@ -269,7 +269,7 @@ final class ALKMediaViewerViewController: UIViewController {
 
     private func playVideo() {
         guard let message = viewModel?.getMessageForCurrentIndex(), let filePath = message.filePath,
-            let url = viewModel?.getURLFor(name: filePath) else { return }
+              let url = viewModel?.getURLFor(name: filePath) else { return }
         let player = AVPlayer(url: url)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
@@ -280,7 +280,7 @@ final class ALKMediaViewerViewController: UIViewController {
 
     private func playAudio() {
         guard let message = viewModel?.getMessageForCurrentIndex(), let filePath = message.filePath,
-            let url = viewModel?.getURLFor(name: filePath) else { return }
+              let url = viewModel?.getURLFor(name: filePath) else { return }
         let player = AVPlayer(url: url)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player

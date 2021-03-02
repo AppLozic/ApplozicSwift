@@ -8,29 +8,29 @@
 import Kingfisher
 
 class ALKFriendContactMessageCell: ALKContactMessageBaseCell {
-    struct Padding {
-        struct Name {
+    enum Padding {
+        enum Name {
             static let left: CGFloat = 10
             static let right: CGFloat = 57
             static let top: CGFloat = 6
             static let height: CGFloat = 16
         }
 
-        struct Image {
+        enum Image {
             static let left: CGFloat = 9
             static let top: CGFloat = 18
             static let width: CGFloat = 37
             static let height: CGFloat = 37
         }
 
-        struct Contact {
+        enum Contact {
             static let left: CGFloat = 10
             static let top: CGFloat = 4
             static let multiplier: CGFloat = 0.5
             static let bottom: CGFloat = 2
         }
 
-        struct Time {
+        enum Time {
             static let left: CGFloat = 10
         }
     }

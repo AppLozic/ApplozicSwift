@@ -5,7 +5,7 @@
 //  Created by Mukesh on 19/09/19.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 extension ALChannelDBService {

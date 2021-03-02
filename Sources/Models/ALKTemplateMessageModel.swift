@@ -35,11 +35,11 @@ open class ALKTemplateMessageModel: NSObject {
     }
 }
 
-extension ALKTemplateMessageModel {
+public extension ALKTemplateMessageModel {
     /// Json will be parsed and mapped to the model.
-    public convenience init?(json: [String: Any]) {
+    convenience init?(json: [String: Any]) {
         guard let identifier = json["identifier"] as? String,
-            let text = json["text"] as? String
+              let text = json["text"] as? String
         else {
             return nil
         }

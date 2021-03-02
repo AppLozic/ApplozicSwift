@@ -13,7 +13,7 @@ enum TemplateDecodingError: Error {
 }
 
 /// A type that decodes a template(payload) from ALMessage's metadata.
-struct TemplateDecoder {
+enum TemplateDecoder {
     /// Decodes a Template from the metadata.
     /// - parameter metadata: Metadata present in the `ALMessage` which contains the `payload`.
     /// - throws: `TemplateDecodingError.payloadMissing` if the payload key is not present or if it doesn't contain a `String`.

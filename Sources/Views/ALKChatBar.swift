@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 import UIKit
 
@@ -44,14 +44,24 @@ open class ALKChatBar: UIView, Localizable {
 
     public var action: ((ActionType) -> Void)?
 
-    open var poweredByMessageLabel: ALKHyperLabel = {
-        let label = ALKHyperLabel(frame: CGRect.zero)
-        label.backgroundColor = UIColor.darkGray
-        label.numberOfLines = 1
-        label.textAlignment = NSTextAlignment.center
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 14)
-        return label
+    var poweredByMessageTextView: ALKTextView = {
+        let textView = ALKTextView(frame: .zero)
+        textView.isUserInteractionEnabled = true
+        textView.isSelectable = true
+        textView.isEditable = false
+        textView.textContainer.maximumNumberOfLines = 10
+        textView.textContainer.lineBreakMode = .byTruncatingTail
+        textView.backgroundColor = UIColor.darkGray
+        textView.dataDetectorTypes = .link
+        textView.linkTextAttributes = [.foregroundColor: UIColor.blue,
+                                       .underlineStyle: NSUnderlineStyle.single.rawValue]
+        textView.isScrollEnabled = false
+        textView.delaysContentTouches = false
+        textView.font = UIFont.systemFont(ofSize: 14)
+        textView.textContainerInset = .zero
+        textView.textContainer.lineFragmentPadding = 0
+        textView.contentInset = .zero
+        return textView
     }()
 
     public var autocompletionView: UITableView!
@@ -462,7 +472,7 @@ open class ALKChatBar: UIView, Localizable {
             frameView,
             placeHolder,
             soundRec,
-            poweredByMessageLabel,
+            poweredByMessageTextView,
         ])
 
         lineView.topAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
@@ -515,13 +525,13 @@ open class ALKChatBar: UIView, Localizable {
             sendButton.isHidden = true
         }
 
-        textView.topAnchor.constraint(equalTo: poweredByMessageLabel.bottomAnchor, constant: 0).isActive = true
+        textView.topAnchor.constraint(equalTo: poweredByMessageTextView.bottomAnchor, constant: 0).isActive = true
         textView.bottomAnchor.constraint(equalTo: bottomGrayView.topAnchor, constant: 0).isActive = true
         textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 3).isActive = true
-        poweredByMessageLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        poweredByMessageLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        poweredByMessageLabel.heightAnchor.constraintEqualToAnchor(constant: 0, identifier: ConstraintIdentifier.poweredByMessageHeight.rawValue).isActive = true
-        poweredByMessageLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
+        poweredByMessageTextView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        poweredByMessageTextView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        poweredByMessageTextView.heightAnchor.constraintEqualToAnchor(constant: 0, identifier: ConstraintIdentifier.poweredByMessageHeight.rawValue).isActive = true
+        poweredByMessageTextView.topAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
 
         textView.trailingAnchor.constraint(equalTo: lineImageView.leadingAnchor).isActive = true
 
@@ -563,7 +573,7 @@ open class ALKChatBar: UIView, Localizable {
     }
 
     public func showPoweredByMessage() {
-        poweredByMessageLabel.constraint(withIdentifier: ConstraintIdentifier.poweredByMessageHeight.rawValue)?.constant = 20
+        poweredByMessageTextView.constraint(withIdentifier: ConstraintIdentifier.poweredByMessageHeight.rawValue)?.constant = 20
     }
 
     /// Use this to update the visibilty of attachment options
@@ -689,7 +699,7 @@ open class ALKChatBar: UIView, Localizable {
             var image = image?.imageFlippedForRightToLeftLayoutDirection()
             image = image?.scale(with: size)
             if tintColor != nil,
-                !chatBarConfiguration.disableButtonTintColor
+               !chatBarConfiguration.disableButtonTintColor
             {
                 image = image?.withRenderingMode(.alwaysTemplate)
                 button.imageView?.tintColor = tintColor

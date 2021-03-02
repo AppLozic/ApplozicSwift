@@ -5,7 +5,7 @@
 //  Created by Shivam Pokhriyal on 25/03/19.
 //
 
-import Applozic
+import ApplozicCore
 
 public class NotificationHelper {
     /// Stores information about the notification that arrives
@@ -68,9 +68,9 @@ public class NotificationHelper {
             let viewModel = topVC.viewModel
         else {
             guard let topVC = ALPushAssist().topViewController,
-                let navVC = topVC.presentingViewController as? ALKBaseNavigationViewController,
-                let conversationViewController = navVC.topViewController as? ALKConversationViewController,
-                let viewModel = conversationViewController.viewModel
+                  let navVC = topVC.presentingViewController as? ALKBaseNavigationViewController,
+                  let conversationViewController = navVC.topViewController as? ALKConversationViewController,
+                  let viewModel = conversationViewController.viewModel
             else {
                 return false
             }
@@ -158,7 +158,7 @@ public class NotificationHelper {
             return true
         default:
             if let searchVC = topVC as? UISearchController,
-                searchVC.searchResultsController as? ALKSearchResultViewController != nil
+               searchVC.searchResultsController as? ALKSearchResultViewController != nil
             {
                 return true
             }
@@ -181,7 +181,7 @@ public class NotificationHelper {
             refreshConversation(vc, with: notification)
         default:
             if let searchVC = topVC as? UISearchController,
-                let vc = searchVC.presentingViewController as? ALKConversationListViewController
+               let vc = searchVC.presentingViewController as? ALKConversationListViewController
             {
                 openConversationFromListVC(vc, notification: notification)
                 return

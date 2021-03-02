@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 import Kingfisher
 import UIKit
@@ -83,8 +83,8 @@ class ALKPhotoCell: ALKChatBaseCell<ALKMessageViewModel>,
     static var heightPercentage: CGFloat = 0.5
     static var widthPercentage: CGFloat = 0.48
 
-    struct Padding {
-        struct CaptionLabel {
+    enum Padding {
+        enum CaptionLabel {
             static var bottom: CGFloat = 10.0
             static var left: CGFloat = 5.0
             static var right: CGFloat = 5.0
@@ -174,7 +174,7 @@ class ALKPhotoCell: ALKChatBaseCell<ALKMessageViewModel>,
         NSLog("Messages with attachment: ", messages)
 
         guard let viewModel = viewModel as? ALKMessageModel,
-            let currentIndex = messageModels.firstIndex(of: viewModel) else { return }
+              let currentIndex = messageModels.firstIndex(of: viewModel) else { return }
         vc?.viewModel = ALKMediaViewerViewModel(messages: messageModels, currentIndex: currentIndex, localizedStringFileName: localizedStringFileName)
         UIViewController.topViewController()?.present(nav!, animated: true, completion: {
             button.isEnabled = true
@@ -338,7 +338,7 @@ class ALKPhotoCell: ALKChatBaseCell<ALKMessageViewModel>,
         guard let thumbnailPath = metadata.thumbnailFilePath else {
             ALMessageClientService().downloadImageThumbnailUrl(metadata.thumbnailUrl, blobKey: metadata.thumbnailBlobKey) { url, error in
                 guard error == nil,
-                    let url = url
+                      let url = url
                 else {
                     print("Error downloading thumbnail url")
                     return

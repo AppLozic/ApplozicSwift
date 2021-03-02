@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import ContactsUI
 import Foundation
 import UIKit
@@ -320,9 +320,9 @@ open class ALKConversationListViewController: ALKBaseViewController, Localizable
 
     func sync(message: ALMessage) {
         if let viewController = conversationViewController,
-            viewController.viewModel != nil,
-            viewController.viewModel.contactId == message.contactId,
-            viewController.viewModel.channelKey == message.groupId
+           viewController.viewModel != nil,
+           viewController.viewModel.contactId == message.contactId,
+           viewController.viewModel.channelKey == message.groupId
         {
             print("Contact id matched1")
             viewController.viewModel.addMessagesToList([message])
@@ -451,9 +451,9 @@ extension ALKConversationListViewController: ALMQTTConversationDelegate {
         guard let message = alMessage else { return }
         let viewController = navigationController?.visibleViewController as? ALKConversationViewController
         if let vm = viewController?.viewModel, vm.contactId != nil || vm.channelKey != nil,
-            let visibleController = navigationController?.visibleViewController,
-            visibleController.isKind(of: ALKConversationViewController.self),
-            isNewMessageForActiveThread(alMessage: alMessage, vm: vm)
+           let visibleController = navigationController?.visibleViewController,
+           visibleController.isKind(of: ALKConversationViewController.self),
+           isNewMessageForActiveThread(alMessage: alMessage, vm: vm)
         {
             viewModel.syncCall(viewController: viewController, message: message, isChatOpen: true)
 
@@ -468,7 +468,7 @@ extension ALKConversationListViewController: ALMQTTConversationDelegate {
             }
         }
         if let visibleController = navigationController?.visibleViewController,
-            visibleController.isKind(of: ALKConversationListViewController.self)
+           visibleController.isKind(of: ALKConversationListViewController.self)
         {
             sync(message: alMessage)
         }

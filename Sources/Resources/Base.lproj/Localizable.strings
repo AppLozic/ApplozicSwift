@@ -160,3 +160,6 @@ DatePickerDateAndTimeTitle = "Select date and time";
 InvalidDatErrorInForm = "Please enter valid data";
 
 RichMessageImagePreviewTitle = "Image";
+
+EnableCameraPermissionMessage = "Enable Contact Permission";
+

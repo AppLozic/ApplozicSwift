@@ -26,7 +26,7 @@ public struct FAQMessageStyle {
     public var bubble = MessageBubbleStyle(color: UIColor.lightGray, cornerRadius: 5, padding: Padding(left: 10, right: 10, top: 10, bottom: 10))
 }
 
-public struct FAQMessageTheme {
+public enum FAQMessageTheme {
     public static var sentMessage = FAQMessageStyle()
     public static var receivedMessage = FAQMessageStyle()
 }

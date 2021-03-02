@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 // MARK: - MessageType
@@ -128,8 +128,8 @@ extension ALKMessageViewModel {
 
     private var mentionParser: MessageMentionDecoder? {
         guard let message = message,
-            let metadata = metadata,
-            !metadata.isEmpty
+              let metadata = metadata,
+              !metadata.isEmpty
         else {
             return nil
         }
@@ -143,13 +143,13 @@ extension ALKMessageViewModel {
         displayNames: ((Set<String>) -> ([String: String]?))?
     ) -> NSAttributedString? {
         guard containsMentions,
-            let userIds = mentionedUserIds,
-            let names = displayNames?(userIds),
-            let attributedText = mentionParser?.messageWithMentions(
-                displayNamesOfUsers: names,
-                attributesForMention: mentionAttributes,
-                defaultAttributes: defaultAttributes
-            )
+              let userIds = mentionedUserIds,
+              let names = displayNames?(userIds),
+              let attributedText = mentionParser?.messageWithMentions(
+                  displayNamesOfUsers: names,
+                  attributesForMention: mentionAttributes,
+                  defaultAttributes: defaultAttributes
+              )
         else {
             return nil
         }
@@ -165,8 +165,8 @@ extension ALKMessageViewModel {
     }
 }
 
-extension ALKMessageViewModel {
-    public var status: MessageStatus {
+public extension ALKMessageViewModel {
+    var status: MessageStatus {
         if isAllRead {
             return .read
         } else if isAllReceived {

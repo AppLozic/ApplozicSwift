@@ -5,7 +5,7 @@
 //  Created by Mukesh on 07/08/20.
 //
 
-import Applozic
+import ApplozicCore
 import UIKit
 
 extension ALKConversationViewController: ALKDocumentManagerDelegate {

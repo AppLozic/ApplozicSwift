@@ -38,8 +38,8 @@ struct GroupMemberInfo {
 class ALKGroupMemberCell: UICollectionViewCell {
     var channelDetailConfig = ALKChannelDetailViewConfiguration()
 
-    struct Padding {
-        struct Profile {
+    enum Padding {
+        enum Profile {
             static let left: CGFloat = 20
             static let width: CGFloat = 40
             static let height: CGFloat = 40
@@ -47,12 +47,12 @@ class ALKGroupMemberCell: UICollectionViewCell {
             static let bottom: CGFloat = 10
         }
 
-        struct Name {
+        enum Name {
             static let left: CGFloat = 10
             static let right: CGFloat = 10
         }
 
-        struct Admin {
+        enum Admin {
             static let right: CGFloat = 20
         }
     }

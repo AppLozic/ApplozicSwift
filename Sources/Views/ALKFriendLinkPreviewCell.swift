@@ -1,4 +1,4 @@
-import Applozic
+import ApplozicCore
 import Foundation
 import Kingfisher
 
@@ -42,25 +42,25 @@ class ALKFriendLinkPreviewCell: ALKLinkPreviewBaseCell {
             static let bottom: CGFloat = 5.0
         }
 
-        struct ReplyView {
+        enum ReplyView {
             static let left: CGFloat = 5.0
             static let right: CGFloat = 5.0
             static let top: CGFloat = 5.0
             static let height: CGFloat = 80.0
         }
 
-        struct ReplyNameLabel {
+        enum ReplyNameLabel {
             static let right: CGFloat = 10.0
             static let height: CGFloat = 30.0
         }
 
-        struct ReplyMessageLabel {
+        enum ReplyMessageLabel {
             static let right: CGFloat = 10.0
             static let top: CGFloat = 5.0
             static let height: CGFloat = 30.0
         }
 
-        struct PreviewImageView {
+        enum PreviewImageView {
             static let height: CGFloat = 50.0
             static let width: CGFloat = 70.0
             static let right: CGFloat = 5.0
@@ -332,7 +332,7 @@ class ALKFriendLinkPreviewCell: ALKLinkPreviewBaseCell {
 
         var isReplyMessage = false
         if let metadata = viewModel.metadata,
-            metadata[AL_MESSAGE_REPLY_KEY] as? String != nil
+           metadata[AL_MESSAGE_REPLY_KEY] as? String != nil
         {
             isReplyMessage = true
         }

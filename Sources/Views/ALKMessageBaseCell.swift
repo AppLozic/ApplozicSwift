@@ -5,7 +5,7 @@
 //  Created by Shivam Pokhriyal on 12/06/19.
 //
 
-import Applozic
+import ApplozicCore
 import Kingfisher
 import UIKit
 
@@ -395,7 +395,7 @@ open class ALKMessageCell: ALKChatBaseCell<ALKMessageViewModel> {
     private func getMapImageURL(for message: ALKMessageViewModel) -> URL? {
         guard message.messageType == .location else { return nil }
         guard let lat = message.geocode?.location.latitude,
-            let lon = message.geocode?.location.longitude
+              let lon = message.geocode?.location.longitude
         else { return nil }
 
         let latLonArgument = String(format: "%f,%f", lat, lon)
@@ -436,12 +436,12 @@ open class ALKMessageCell: ALKChatBaseCell<ALKMessageViewModel> {
         mentionStyle: Style
     ) {
         if viewModel.messageType == .text,
-            let attributedText = viewModel
-            .attributedTextWithMentions(
-                defaultAttributes: [:],
-                mentionAttributes: mentionStyle.toAttributes,
-                displayNames: displayNames
-            )
+           let attributedText = viewModel
+           .attributedTextWithMentions(
+               defaultAttributes: [:],
+               mentionAttributes: mentionStyle.toAttributes,
+               displayNames: displayNames
+           )
         {
             replyMessageLabel.attributedText = attributedText
         } else {

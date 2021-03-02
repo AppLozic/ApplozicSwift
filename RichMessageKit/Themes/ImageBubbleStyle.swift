@@ -34,7 +34,7 @@ public struct ImageBubbleStyle {
     public init() {}
 }
 
-public struct ImageBubbleTheme {
+public enum ImageBubbleTheme {
     /// `ImageBubbleStyle` for sent message
     public static var sentMessage = ImageBubbleStyle()
 

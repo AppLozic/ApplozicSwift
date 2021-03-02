@@ -5,7 +5,7 @@
 //  Created by Shivam Pokhriyal on 12/06/19.
 //
 
-import Applozic
+import ApplozicCore
 import Kingfisher
 import UIKit
 
@@ -29,58 +29,58 @@ open class ALKFriendMessageCell: ALKMessageCell {
         return label
     }()
 
-    struct Padding {
-        struct NameLabel {
+    enum Padding {
+        enum NameLabel {
             static let top: CGFloat = 6.0
             static let left: CGFloat = 57.0
             static let right: CGFloat = 57.0
             static let height: CGFloat = 16.0
         }
 
-        struct AvatarImage {
+        enum AvatarImage {
             static let top: CGFloat = 18.0
             static let left: CGFloat = 9.0
             static let width: CGFloat = 37.0
             static let height: CGFloat = 37.0
         }
 
-        struct BubbleView {
+        enum BubbleView {
             static let left: CGFloat = 5.0
             static let right: CGFloat = 95.0
             static let bottom: CGFloat = 5.0
         }
 
-        struct ReplyView {
+        enum ReplyView {
             static let left: CGFloat = 5.0
             static let right: CGFloat = 5.0
             static let top: CGFloat = 5.0
             static let height: CGFloat = 80.0
         }
 
-        struct ReplyNameLabel {
+        enum ReplyNameLabel {
             static let right: CGFloat = 10.0
             static let height: CGFloat = 30.0
         }
 
-        struct ReplyMessageLabel {
+        enum ReplyMessageLabel {
             static let right: CGFloat = 10.0
             static let top: CGFloat = 5.0
             static let height: CGFloat = 30.0
         }
 
-        struct PreviewImageView {
+        enum PreviewImageView {
             static let height: CGFloat = 50.0
             static let width: CGFloat = 70.0
             static let right: CGFloat = 5.0
             static let top: CGFloat = 10.0
         }
 
-        struct MessageView {
+        enum MessageView {
             static let top: CGFloat = 5
             static let bottom: CGFloat = 10
         }
 
-        struct TimeLabel {
+        enum TimeLabel {
             static let bottom: CGFloat = 2
             static let left: CGFloat = 10
         }
@@ -324,7 +324,7 @@ open class ALKFriendMessageCell: ALKMessageCell {
         let totalHeight = max(messageHeight + heightPadding, minimumHeight)
 
         guard let metadata = viewModel.metadata,
-            metadata[AL_MESSAGE_REPLY_KEY] as? String != nil
+              metadata[AL_MESSAGE_REPLY_KEY] as? String != nil
         else {
             return totalHeight
         }

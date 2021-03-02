@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 import Kingfisher
 import UIKit
@@ -29,26 +29,26 @@ open class ALKMyMessageCell: ALKMessageCell {
         return ALKMessageStyle.sentBubble.widthPadding + 5
     }()
 
-    struct Padding {
-        struct ReplyView {
+    enum Padding {
+        enum ReplyView {
             static let height: CGFloat = 80.0
             static let left: CGFloat = 5.0
             static let right: CGFloat = 5.0
             static let top: CGFloat = 5.0
         }
 
-        struct ReplyNameLabel {
+        enum ReplyNameLabel {
             static let right: CGFloat = 10.0
             static let height: CGFloat = 30.0
         }
 
-        struct ReplyMessageLabel {
+        enum ReplyMessageLabel {
             static let right: CGFloat = 10.0
             static let top: CGFloat = 5.0
             static let height: CGFloat = 30.0
         }
 
-        struct PreviewImageView {
+        enum PreviewImageView {
             static let height: CGFloat = 50.0
             static let width: CGFloat = 70.0
             static let right: CGFloat = 10.0
@@ -56,18 +56,18 @@ open class ALKMyMessageCell: ALKMessageCell {
             static let bottom: CGFloat = 5.0
         }
 
-        struct MessageView {
+        enum MessageView {
             static let top: CGFloat = 5
             static let bottom: CGFloat = 10.0
         }
 
-        struct BubbleView {
+        enum BubbleView {
             static let left: CGFloat = 95.0
             static let bottom: CGFloat = 8.0
             static let right: CGFloat = 10.0
         }
 
-        struct StateView {
+        enum StateView {
             static let height: CGFloat = 9.0
             static let width: CGFloat = 17.0
             static let right: CGFloat = 2.0
@@ -263,7 +263,7 @@ open class ALKMyMessageCell: ALKMessageCell {
 
         let totalHeight = messageHeight + heightPadding
         guard let metadata = viewModel.metadata,
-            metadata[AL_MESSAGE_REPLY_KEY] as? String != nil
+              metadata[AL_MESSAGE_REPLY_KEY] as? String != nil
         else {
             return totalHeight
         }

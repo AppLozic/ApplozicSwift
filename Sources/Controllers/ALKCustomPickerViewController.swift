@@ -272,8 +272,8 @@ class ALKCustomPickerViewController: ALKBaseViewController, Localizable {
 extension ALKCustomPickerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     // MARK: CollectionViewEnvironment
 
-    private class CollectionViewEnvironment {
-        struct Spacing {
+    private enum CollectionViewEnvironment {
+        enum Spacing {
             static let lineitem: CGFloat = 5.0
             static let interitem: CGFloat = 0.0
             static let inset = UIEdgeInsets(top: 0.0, left: 3.0, bottom: 0.0, right: 3.0)

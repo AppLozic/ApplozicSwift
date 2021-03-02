@@ -9,7 +9,6 @@
 import UIKit
 
 final class ALKPreviewImageViewController: ALKBaseViewController, Localizable {
-
     // to be injected
     var viewModel: ALKPreviewImageViewModel?
 
@@ -43,7 +42,7 @@ final class ALKPreviewImageViewController: ALKBaseViewController, Localizable {
 
     private func setupNavigation() {
         guard let viewModel = viewModel else { return }
-        let title = self.localizedString(forKey: "RichMessageImagePreviewTitle", withDefaultValue: SystemMessage.PhotoAlbum.PreviewTitle, fileName: viewModel.localizedStringFileName)
+        let title = localizedString(forKey: "RichMessageImagePreviewTitle", withDefaultValue: SystemMessage.PhotoAlbum.PreviewTitle, fileName: viewModel.localizedStringFileName)
         navigationItem.title = title
         let image = UIImage(named: "DownloadiOS", in: Bundle.applozic, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         let button = UIBarButtonItem(image: image?.scale(with: CGSize(width: 24, height: 24)), style: .plain, target: self, action: #selector(downlaodImgPress(_:)))

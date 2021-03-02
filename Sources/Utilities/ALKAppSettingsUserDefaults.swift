@@ -107,7 +107,7 @@ public struct ALKAppSettingsUserDefaults {
     /// Button primary color
     public func getButtonPrimaryColor() -> UIColor {
         if let appSettings = getAppSettings(),
-            let buttonPrimaryColor = appSettings.buttonPrimaryColor
+           let buttonPrimaryColor = appSettings.buttonPrimaryColor
         {
             return UIColor(hexString: buttonPrimaryColor)
         }
@@ -129,19 +129,19 @@ public struct ALKAppSettingsUserDefaults {
         } else {
             /// Keep the sent message or received message background color . If some one set from MessageStyle
             if let settings = existingAppSettings,
-                let existingSentMessageBackgroundColor = settings.sentMessageBackgroundColor
+               let existingSentMessageBackgroundColor = settings.sentMessageBackgroundColor
             {
                 appSettings.sentMessageBackgroundColor = existingSentMessageBackgroundColor
             }
 
             if let settings = existingAppSettings,
-                let existingReceivedMessageBackgroundColor = settings.receivedMessageBackgroundColor
+               let existingReceivedMessageBackgroundColor = settings.receivedMessageBackgroundColor
             {
                 appSettings.receivedMessageBackgroundColor = existingReceivedMessageBackgroundColor
             }
 
             if let settings = existingAppSettings,
-                let existingButtonPrimaryColor = settings.buttonPrimaryColor
+               let existingButtonPrimaryColor = settings.buttonPrimaryColor
             {
                 appSettings.buttonPrimaryColor = existingButtonPrimaryColor
             }

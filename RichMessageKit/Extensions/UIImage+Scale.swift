@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-extension UIImage {
+public extension UIImage {
     // Scale a UIImage to any given rect keeping the aspect ratio
     // https://gist.github.com/tomasbasham/10533743#gistcomment-2865851
-    public func scale(with size: CGSize) -> UIImage? {
+    func scale(with size: CGSize) -> UIImage? {
         var scaledImageRect = CGRect.zero
 
         let aspectWidth: CGFloat = size.width / self.size.width

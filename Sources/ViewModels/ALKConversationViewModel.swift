@@ -6,8 +6,11 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
+import AVFoundation
+import Contacts
 import Foundation
+import MobileCoreServices
 
 public protocol ALKConversationViewModelDelegate: AnyObject {
     func loadingStarted()
@@ -90,7 +93,7 @@ open class ALKConversationViewModel: NSObject, Localizable {
     open var isOpenGroup: Bool {
         let alChannelService = ALChannelService()
         guard let channelKey = channelKey,
-            let alchannel = alChannelService.getChannelByKey(channelKey)
+              let alchannel = alChannelService.getChannelByKey(channelKey)
         else {
             return false
         }
@@ -486,13 +489,13 @@ open class ALKConversationViewModel: NSObject, Localizable {
             let data = try Data(contentsOf: fileUrl, options: .mappedIfSafe)
             let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
             if let json = jsonResult as? [String: Any],
-                let templates = json["templates"] as? [Any]
+               let templates = json["templates"] as? [Any]
             {
                 NSLog("Template json: ", json.description)
                 var templateModels: [ALKTemplateMessageModel] = []
                 for element in templates {
                     if let template = element as? [String: Any],
-                        let model = ALKTemplateMessageModel(json: template)
+                       let model = ALKTemplateMessageModel(json: template)
                     {
                         templateModels.append(model)
                     }
@@ -516,7 +519,7 @@ open class ALKConversationViewModel: NSObject, Localizable {
         let serviceEnabled = ALApplozicSettings.isS3StorageServiceEnabled() || ALApplozicSettings.isGoogleCloudServiceEnabled()
 
         if let url = message.fileMetaInfo?.url,
-            !serviceEnabled
+           !serviceEnabled
         {
             let httpManager = ALKHTTPManager()
             httpManager.downloadDelegate = view as? ALKHTTPManagerDownloadDelegate
@@ -721,7 +724,7 @@ open class ALKConversationViewModel: NSObject, Localizable {
 
     open func send(photo: UIImage, metadata: [AnyHashable: Any]?) -> (ALMessage?, IndexPath?) {
         print("image is:  ", photo)
-        let filePath = ALImagePickerHandler.saveImage(toDocDirectory: photo)
+        let filePath = ALKFileUtils().saveImageToDocDirectory(image: photo)
         print("filepath:: \(String(describing: filePath))")
         guard let path = filePath, let url = URL(string: path) else { return (nil, nil) }
         guard let alMessage = processAttachment(
@@ -738,7 +741,7 @@ open class ALKConversationViewModel: NSObject, Localizable {
 
     open func send(contact: CNContact, metadata: [AnyHashable: Any]?) {
         guard
-            let path = ALVCardClass().saveContact(toDocDirectory: contact),
+            let path = ALKFileUtils().saveContact(toDocDirectory: contact),
             let url = URL(string: path)
         else {
             print("Error while saving contact")
@@ -862,7 +865,7 @@ open class ALKConversationViewModel: NSObject, Localizable {
         let messageService = ALMessageDBService()
         let alHandler = ALDBHandler.sharedInstance()
         guard let dbMessage = messageService.getMeesageBy(alMessage.msgDBObjectId) as? DB_Message,
-            let message = messageService.createMessageEntity(dbMessage) else { return }
+              let message = messageService.createMessageEntity(dbMessage) else { return }
 
         guard let fileInfo = responseDict as? [String: Any] else { return }
         if ALApplozicSettings.isS3StorageServiceEnabled() {
@@ -917,9 +920,9 @@ open class ALKConversationViewModel: NSObject, Localizable {
 
     func syncOpenGroup(message: ALMessage) {
         guard let groupId = message.groupId,
-            groupId == channelKey,
-            !message.isMyMessage,
-            message.deviceKey != ALUserDefaultsHandler.getDeviceKeyString()
+              groupId == channelKey,
+              !message.isMyMessage,
+              message.deviceKey != ALUserDefaultsHandler.getDeviceKeyString()
         else {
             return
         }
@@ -940,8 +943,8 @@ open class ALKConversationViewModel: NSObject, Localizable {
             withCompletion: { messageList, error in
                 self.delegate?.loadingFinished(error: error)
                 guard error == nil,
-                    let messages = messageList as? [ALMessage],
-                    !messages.isEmpty else { return }
+                      let messages = messageList as? [ALMessage],
+                      !messages.isEmpty else { return }
                 self.loadMessagesFromDB()
             }
         )
@@ -1269,9 +1272,9 @@ open class ALKConversationViewModel: NSObject, Localizable {
         if let newMessages = messages as? [ALMessage] {
             for msg in newMessages {
                 if let metadata = msg.metadata,
-                    let replyKey = metadata.value(forKey: AL_MESSAGE_REPLY_KEY) as? String,
-                    messageDb.getMessageByKey("key", value: replyKey) == nil,
-                    !replyMessageKeys.contains(replyKey)
+                   let replyKey = metadata.value(forKey: AL_MESSAGE_REPLY_KEY) as? String,
+                   messageDb.getMessageByKey("key", value: replyKey) == nil,
+                   !replyMessageKeys.contains(replyKey)
                 {
                     replyMessageKeys.add(replyKey)
                 }
@@ -1421,8 +1424,8 @@ open class ALKConversationViewModel: NSObject, Localizable {
         delegate?.loadingStarted()
         var time: NSNumber?
         if let messageList = alMessageWrapper.getUpdatedMessageArray(),
-            messageList.count > 1,
-            let first = alMessages.first
+           messageList.count > 1,
+           let first = alMessages.first
         {
             time = first.createdAtTime
         }

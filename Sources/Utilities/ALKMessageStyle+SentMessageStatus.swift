@@ -7,17 +7,17 @@
 
 import Foundation
 
-extension ALKMessageStyle {
-    public typealias MessageStatusType = MessageStatus
+public extension ALKMessageStyle {
+    typealias MessageStatusType = MessageStatus
 
-    public enum StatusIcon {
+    enum StatusIcon {
         case templateImageWithTint(image: UIImage, tintColor: UIColor)
         case normalImage(image: UIImage)
         case none
     }
 
     /// Style information for Sent Message status(read receipt).
-    public struct SentMessageStatus {
+    struct SentMessageStatus {
         private(set) var statusIcons: [MessageStatusType: StatusIcon] = {
             var icons = [MessageStatusType: StatusIcon]()
             for option in MessageStatusType.allCases {

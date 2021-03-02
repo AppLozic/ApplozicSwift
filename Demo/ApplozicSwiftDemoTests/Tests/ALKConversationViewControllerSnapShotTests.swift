@@ -6,7 +6,7 @@
 //  Copyright © 2018 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import Nimble
 import Nimble_Snapshots
 import Quick
@@ -189,7 +189,7 @@ class ALKConversationViewControllerSnapshotTests: QuickSpec {
                     conversationVC.endAppearanceTransition()
                 }
                 it("renders on the left side") {
-                    expect(conversationVC.view).toEventually(haveValidSnapshot(), timeout: 3.0)
+                    expect(conversationVC.view).toEventually(haveValidSnapshot(), timeout: DispatchTimeInterval.seconds(3))
                 }
             }
             context("when it was sent") {
@@ -199,7 +199,7 @@ class ALKConversationViewControllerSnapshotTests: QuickSpec {
                     conversationVC.endAppearanceTransition()
                 }
                 it("renders on the right side") {
-                    expect(conversationVC.view).toEventually(haveValidSnapshot(), timeout: 3.0)
+                    expect(conversationVC.view).toEventually(haveValidSnapshot(), timeout: DispatchTimeInterval.seconds(3))
                 }
             }
         }

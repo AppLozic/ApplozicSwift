@@ -5,7 +5,7 @@
 //  Created by Mukesh on 22/06/20.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 extension ALKConversationViewController: NavigationBarCallbacks {

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 import Kingfisher
 import MGSwipeTableCell
@@ -50,8 +50,8 @@ public final class ALKChatCell: MGSwipeTableCell, Localizable {
         case iconWidthIdentifier = "iconViewWidth"
     }
 
-    struct Padding {
-        struct Email {
+    enum Padding {
+        enum Email {
             static let top: CGFloat = 4
             static let left: CGFloat = 12
             static let height: CGFloat = 15
@@ -59,7 +59,7 @@ public final class ALKChatCell: MGSwipeTableCell, Localizable {
         }
     }
 
-    public struct Config {
+    public enum Config {
         public static var iconMuted = UIImage(named: "muted", in: Bundle.applozic, compatibleWith: nil)
     }
 
@@ -190,7 +190,7 @@ public final class ALKChatCell: MGSwipeTableCell, Localizable {
 
     private func isConversationMuted(viewModel: ALKChatViewModelProtocol) -> Bool {
         if let channelKey = viewModel.channelKey,
-            let channel = ALChannelService().getChannelByKey(channelKey)
+           let channel = ALChannelService().getChannelByKey(channelKey)
         {
             if channel.isNotificationMuted() {
                 return true
@@ -198,7 +198,7 @@ public final class ALKChatCell: MGSwipeTableCell, Localizable {
                 return false
             }
         } else if let contactId = viewModel.contactId,
-            let contact = ALContactService().loadContact(byKey: "userId", value: contactId)
+                  let contact = ALContactService().loadContact(byKey: "userId", value: contactId)
         {
             if contact.isNotificationMuted() {
                 return true
@@ -263,7 +263,7 @@ public final class ALKChatCell: MGSwipeTableCell, Localizable {
         if !viewModel.isGroupChat {
             let contactService = ALContactService()
             guard let contactId = viewModel.contactId,
-                let contact = contactService.loadContact(byKey: "userId", value: contactId)
+                  let contact = contactService.loadContact(byKey: "userId", value: contactId)
             else {
                 return
             }

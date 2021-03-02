@@ -24,7 +24,7 @@ extension AutoCompleteManager: UITableViewDataSource, UITableViewDelegate {
         }
 
         guard indexPath.row < items.count,
-            let selection = selection
+              let selection = selection
         else {
             return cell
         }

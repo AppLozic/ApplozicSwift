@@ -5,40 +5,40 @@
 //  Created by Sunil on 05/03/19.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 import Kingfisher
 import UIKit
 
 class ALKDocumentCell: ALKChatBaseCell<ALKMessageViewModel> {
-    struct CommonPadding {
-        struct FrameUIView {
+    enum CommonPadding {
+        enum FrameUIView {
             static let top: CGFloat = 5
             static let leading: CGFloat = 5
             static let height: CGFloat = 40
             static let trailing: CGFloat = 5
         }
 
-        struct DocumentView {
+        enum DocumentView {
             static let top: CGFloat = 7
             static let leading: CGFloat = 10
             static let height: CGFloat = 22
             static let width: CGFloat = 14
         }
 
-        struct FileNameLabel {
+        enum FileNameLabel {
             static let leading: CGFloat = 5
             static let trailing: CGFloat = 40
         }
 
-        struct DownloadButton {
+        enum DownloadButton {
             static let top: CGFloat = 5
             static let trailing: CGFloat = 5
             static let height: CGFloat = 27
             static let width: CGFloat = 27
         }
 
-        struct FileTypeView {
+        enum FileTypeView {
             static let height: CGFloat = 20
         }
     }

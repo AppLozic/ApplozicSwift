@@ -27,8 +27,8 @@ extension NSAttributedString {
     }
 }
 
-extension NSMutableAttributedString {
-    public func trimCharacters(in set: CharacterSet) {
+public extension NSMutableAttributedString {
+    func trimCharacters(in set: CharacterSet) {
         var range = (string as NSString).rangeOfCharacter(from: set, options: .anchored)
 
         // Trim leading characters from character set.
@@ -46,6 +46,6 @@ extension NSMutableAttributedString {
     }
 }
 
-extension NSAttributedString.Key {
-    public static let secondaryFont = NSAttributedString.Key("ALKSecondaryFont")
+public extension NSAttributedString.Key {
+    static let secondaryFont = NSAttributedString.Key("ALKSecondaryFont")
 }

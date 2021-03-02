@@ -73,17 +73,17 @@ class ALKEmailTopView: UIView {
 }
 
 class ALKEmailBottomView: UIView {
-    struct Padding {
-        struct View {
+    enum Padding {
+        enum View {
             static let height: CGFloat = 20
         }
 
-        struct EmailInfo {
+        enum EmailInfo {
             static let height: CGFloat = 20.0
             static let width: CGFloat = 124.0
         }
 
-        struct EmailLink {
+        enum EmailLink {
             static let height: CGFloat = 20.0
             static let left: CGFloat = 3.0
         }

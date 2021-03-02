@@ -17,19 +17,19 @@ struct ContactModel {
 }
 
 class ContactView: UIView {
-    struct Padding {
-        struct ContactImage {
+    enum Padding {
+        enum ContactImage {
             static let left: CGFloat = 10
             static let width: CGFloat = 30
             static let height: CGFloat = 30
         }
 
-        struct ContactName {
+        enum ContactName {
             static let left: CGFloat = 10
             static let right: CGFloat = 10
         }
 
-        struct ContactSaveIcon {
+        enum ContactSaveIcon {
             static let right: CGFloat = 10
             static let width: CGFloat = 10
             static let height: CGFloat = 15

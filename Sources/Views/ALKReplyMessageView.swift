@@ -5,7 +5,7 @@
 //  Created by Mukesh Thawani on 07/02/18.
 //
 
-import Applozic
+import ApplozicCore
 import UIKit
 
 /* Reply message view to be used in the
@@ -113,12 +113,12 @@ open class ALKReplyMessageView: UIView, Localizable {
         nameLabel.text = message.isMyMessage ?
             selfNameText : message.displayName
         if message.messageType == .text,
-            let attributedText = message
-            .attributedTextWithMentions(
-                defaultAttributes: Theme.message.toAttributes,
-                mentionAttributes: Theme.mention.toAttributes,
-                displayNames: displayNames
-            )
+           let attributedText = message
+           .attributedTextWithMentions(
+               defaultAttributes: Theme.message.toAttributes,
+               mentionAttributes: Theme.mention.toAttributes,
+               displayNames: displayNames
+           )
         {
             messageLabel.attributedText = attributedText
         } else {
@@ -268,7 +268,7 @@ open class ALKReplyMessageView: UIView, Localizable {
     private func getMapImageURL(for message: ALKMessageViewModel) -> URL? {
         guard message.messageType == .location else { return nil }
         guard let lat = message.geocode?.location.latitude,
-            let lon = message.geocode?.location.longitude
+              let lon = message.geocode?.location.longitude
         else { return nil }
 
         let latLonArgument = String(format: "%f,%f", lat, lon)

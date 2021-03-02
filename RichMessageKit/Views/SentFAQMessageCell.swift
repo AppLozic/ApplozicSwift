@@ -16,10 +16,10 @@ public class SentFAQMessageCell: UITableViewCell {
     // MARK: Public properties
 
     /// Configuration to adjust padding and maxWidth for the view.
-    public struct Config {
+    public enum Config {
         public static var maxWidth = UIScreen.main.bounds.width
 
-        public struct MessageView {
+        public enum MessageView {
             /// Left padding of `MessageView`
             public static var leftPadding: CGFloat = 60.0
             /// Bottom padding of `MessageView`

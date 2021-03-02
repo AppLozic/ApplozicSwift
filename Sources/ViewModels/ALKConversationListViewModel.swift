@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 public protocol ALKConversationListViewModelDelegate: AnyObject {
@@ -129,7 +129,7 @@ public final class ALKConversationListViewModel: NSObject, ALKConversationListVi
     public func remove(message: ALMessage) {
         let messageToDelete = allMessages.filter { ($0 as? ALMessage) == message }
         guard let messageDel = messageToDelete.first as? ALMessage,
-            let index = (allMessages as? [ALMessage])?.firstIndex(of: messageDel)
+              let index = (allMessages as? [ALMessage])?.firstIndex(of: messageDel)
         else {
             return
         }

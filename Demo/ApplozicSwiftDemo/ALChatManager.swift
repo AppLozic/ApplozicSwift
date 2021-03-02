@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import ApplozicSwift
 import Foundation
 import UIKit
@@ -69,7 +69,7 @@ class ALChatManager: NSObject {
     // This will register your User at applozic server.
     // ----------------------
     func connectUser(_ alUser: ALUser, completion: @escaping (_ response: ALRegistrationResponse?, _ error: NSError?) -> Void) {
-        _ = ALChatLauncher(applicationId: getApplicationKey() as String)
+        ALUserDefaultsHandler.setApplicationKey(getApplicationKey() as String)
         let registerUserClientService = ALRegisterUserClientService()
         registerUserClientService.initWithCompletion(alUser, withCompletion: { response, error in
             guard error == nil else {
@@ -100,7 +100,7 @@ class ALChatManager: NSObject {
 
     func isUserPresent() -> Bool {
         guard let _ = ALUserDefaultsHandler.getApplicationKey() as String?,
-            let _ = ALUserDefaultsHandler.getUserId() as String?
+              let _ = ALUserDefaultsHandler.getUserId() as String?
         else {
             return false
         }
@@ -297,13 +297,13 @@ class ALChatManager: NSObject {
 
     private func chatTitleUsing(userId: String?, groupId: NSNumber?) -> String {
         if let contactId = userId,
-            let contact = ALContactDBService().loadContact(byKey: "userId", value: contactId),
-            let name = contact.getDisplayName()
+           let contact = ALContactDBService().loadContact(byKey: "userId", value: contactId),
+           let name = contact.getDisplayName()
         {
             return name
         }
         if let channelKey = groupId,
-            let channel = ALChannelService().getChannelByKey(channelKey)
+           let channel = ALChannelService().getChannelByKey(channelKey)
         {
             return channel.name
         }

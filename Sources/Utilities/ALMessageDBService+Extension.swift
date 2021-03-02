@@ -5,7 +5,7 @@
 //  Created by Shivam Pokhriyal on 13/05/19.
 //
 
-import Applozic
+import ApplozicCore
 
 extension ALMessageDBService {
     func updateDbMessageWith(key: String, value: String, filePath: String) {

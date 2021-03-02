@@ -5,7 +5,7 @@
 //  Created by Mukesh on 08/11/19.
 //
 
-import Applozic
+import ApplozicCore
 import Foundation
 
 extension ALKConversationViewController:
@@ -22,7 +22,7 @@ extension ALKConversationViewController:
     ) {
         // Video attachment
         if let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String,
-            mediaType == "public.movie"
+           mediaType == "public.movie"
         {
             guard let url = info[UIImagePickerController.InfoKey.mediaURL] as? URL else { return }
             print("video path is: ", url.path)
@@ -37,7 +37,7 @@ extension ALKConversationViewController:
                     self.tableView.endUpdates()
                     self.tableView.scrollToBottom(animated: false)
                     guard let newIndexPath = indexPath,
-                        let cell = self.tableView.cellForRow(at: newIndexPath) as? ALKMyVideoCell else { return }
+                          let cell = self.tableView.cellForRow(at: newIndexPath) as? ALKMyVideoCell else { return }
                     guard ALDataNetworkConnection.checkDataNetworkAvailable() else {
                         let notificationView = ALNotificationView()
                         notificationView.noDataConnectionNotificationView()

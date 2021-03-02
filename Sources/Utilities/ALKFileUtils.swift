@@ -5,7 +5,9 @@
 //  Created by Sunil on 14/03/19.
 //
 
-import Applozic
+import ApplozicCore
+import AVFoundation
+import Contacts
 import Foundation
 
 class ALKFileUtils: NSObject {
@@ -87,5 +89,54 @@ class ALKFileUtils: NSObject {
             print("Failed to export video due to error: \(error)")
             return nil
         }
+    }
+
+    func saveContact(toDocDirectory cnContact: CNContact) -> String? {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).map(\.path)
+        let documentsDirectory = paths[0]
+        let vcfCARDPath = documentsDirectory + "/CONTACT_\(Date().timeIntervalSince1970 * 1000)_CARD.vcf"
+
+        var contacts = [CNContact]()
+        contacts.append(cnContact)
+
+        var vCardData: Data?
+        do {
+            vCardData = try CNContactVCardSerialization.data(with: contacts)
+        } catch {
+            return nil
+        }
+
+        guard let cardData = vCardData,
+              let url = URL(string: vcfCARDPath)
+        else {
+            return nil
+        }
+
+        if let contactImageData = cnContact.imageData {
+            var vcString = String(data: cardData, encoding: .utf8)
+
+            let base64Image = contactImageData.base64EncodedString(options: [])
+            let vcardImageString = "PHOTO;TYPE=JPEG;ENCODING=BASE64:" + base64Image + "\n"
+            vcString = vcString?.replacingOccurrences(of: "END:VCARD", with: vcardImageString + "END:VCARD")
+            vCardData = vcString?.data(using: .utf8)
+        }
+        do {
+            try cardData.write(to: url)
+        } catch {
+            print(error)
+            return nil
+        }
+        return vcfCARDPath
+    }
+
+    func saveImageToDocDirectory(image: UIImage) -> String? {
+        let docDirPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).map(\.path)[0]
+        let timestamp = "IMG-\(Date().timeIntervalSince1970 * 1000).jpeg"
+        let filePath = URL(fileURLWithPath: docDirPath).appendingPathComponent(timestamp).path
+        let imageData = image.getCompressedImageData()
+        if let imageData = imageData {
+            NSData(data: imageData).write(toFile: filePath, atomically: true)
+        }
+        return filePath
     }
 }

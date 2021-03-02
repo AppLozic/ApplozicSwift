@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import AVFoundation
 import Foundation
 import UIKit
@@ -523,7 +523,7 @@ extension ALKConversationViewController: UITableViewDelegate, UITableViewDataSou
                     datePickerMode,
                     identifier in
                     guard let weakSelf = self,
-                        let pickerButtonClickProtocol = delegate else { return }
+                          let pickerButtonClickProtocol = delegate else { return }
                     weakSelf.showDatePickerController(delegate: pickerButtonClickProtocol,
                                                       identifier: identifier,
                                                       position: index,
@@ -547,7 +547,7 @@ extension ALKConversationViewController: UITableViewDelegate, UITableViewDataSou
                     } else {
                         // The form data is valid to reload the existing form cell to remove error labels in the form.
                         if let validationFields = submitData?.validationFields,
-                            !validationFields.isEmpty
+                           !validationFields.isEmpty
                         {
                             weakSelf.reloadSectionFor(identifier: message.identifier)
                         }
@@ -563,7 +563,7 @@ extension ALKConversationViewController: UITableViewDelegate, UITableViewDataSou
                     datePickerMode,
                     identifier in
                     guard let weakSelf = self,
-                        let pickerButtonClickProtocol = delegate else { return }
+                          let pickerButtonClickProtocol = delegate else { return }
                     weakSelf.showDatePickerController(delegate: pickerButtonClickProtocol,
                                                       identifier: identifier,
                                                       position: index,
@@ -577,8 +577,8 @@ extension ALKConversationViewController: UITableViewDelegate, UITableViewDataSou
 
     public func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let message = viewModel.messageForRow(indexPath: indexPath),
-            message.messageType == .form,
-            message.formTemplate() != nil
+           message.messageType == .form,
+           message.formTemplate() != nil
         {
             return UITableView.automaticDimension
         } else {
@@ -588,8 +588,8 @@ extension ALKConversationViewController: UITableViewDelegate, UITableViewDataSou
 
     public func tableView(_: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if let message = viewModel.messageForRow(indexPath: indexPath),
-            message.messageType == .form,
-            message.formTemplate() != nil
+           message.messageType == .form,
+           message.formTemplate() != nil
         {
             return UITableView.automaticDimension
         } else {
@@ -670,7 +670,7 @@ extension ALKConversationViewController: UITableViewDelegate, UITableViewDataSou
 
     func reloadSectionFor(identifier: String) {
         guard let index = viewModel.sectionFor(identifier: identifier),
-            index < tableView.numberOfSections
+              index < tableView.numberOfSections
         else {
             print("Can't be updated form cell due to incorrect index")
             return
@@ -733,7 +733,7 @@ extension ALKConversationViewController: UICollectionViewDataSource, UICollectio
         }
 
         guard collectionView.isKind(of: ALKIndexedCollectionView.self),
-            let template = ALKGenericCardCollectionView.getCardTemplate(message: message)
+              let template = ALKGenericCardCollectionView.getCardTemplate(message: message)
         else {
             return 0
         }
@@ -747,8 +747,8 @@ extension ALKConversationViewController: UICollectionViewDataSource, UICollectio
         }
 
         guard let message = viewModel.messageForRow(indexPath: IndexPath(row: 0, section: collectionView.tag)),
-            let template = ALKGenericCardCollectionView.getCardTemplate(message: message),
-            template.count > indexPath.row
+              let template = ALKGenericCardCollectionView.getCardTemplate(message: message),
+              template.count > indexPath.row
         else {
             return UICollectionViewCell()
         }
@@ -766,8 +766,8 @@ extension ALKConversationViewController: UICollectionViewDataSource, UICollectio
 
     public func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let message = viewModel.messageForRow(indexPath: IndexPath(row: 0, section: collectionView.tag)),
-            let template = ALKGenericCardCollectionView.getCardTemplate(message: message),
-            template.count > indexPath.row
+              let template = ALKGenericCardCollectionView.getCardTemplate(message: message),
+              template.count > indexPath.row
         else {
             return CGSize(width: 0, height: 0)
         }

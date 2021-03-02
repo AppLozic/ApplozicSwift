@@ -6,7 +6,7 @@
 //  Copyright © 2017 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import UIKit
 
 protocol ALKSelectParticipantToAddProtocol: AnyObject {
@@ -58,7 +58,7 @@ class ALKParticipantSelectionViewContoller: ALKBaseViewController, Localizable {
         setupUI()
 
         if let textField = searchController.searchBar.textField,
-            UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft
+           UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft
         {
             textField.textAlignment = .right
         }

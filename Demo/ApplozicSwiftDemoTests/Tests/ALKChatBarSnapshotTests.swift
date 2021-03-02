@@ -6,7 +6,7 @@
 //  Copyright © 2018 Applozic. All rights reserved.
 //
 
-import Applozic
+import ApplozicCore
 import Nimble
 import Nimble_Snapshots
 import Quick
