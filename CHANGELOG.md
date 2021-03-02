@@ -5,6 +5,10 @@ The changelog for [ApplozicSwift](https://github.com/AppLozic/ApplozicSwift). Al
 
 ## [Unreleased]
 
+### Enhancements
+
+- Using the ApplozicCore pod in place of Applozic pod, Now all the Import of Applozic will be changed to ApplozicCore.
+
 ## [5.14.0] - 2021-02-27
 
 ### Enhancements
