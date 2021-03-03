@@ -105,9 +105,8 @@ class ALKFileUtils: NSObject {
         } catch {
             return nil
         }
-
-        guard let cardData = vCardData,
-              let url = URL(string: vcfCARDPath)
+        let url = URL(fileURLWithPath: vcfCARDPath)
+        guard let cardData = vCardData
         else {
             return nil
         }

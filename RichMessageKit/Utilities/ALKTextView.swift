@@ -20,24 +20,4 @@ class ALKTextView: UITextView {
     override open var canBecomeFirstResponder: Bool {
         return true
     }
-
-    func hyperLink(mutableAttributedString: NSMutableAttributedString,
-                   url: URL,
-                   clickString: String)
-    {
-        let range = mutableAttributedString.string.range(of: clickString)
-
-        guard let subStringRange = range else {
-            return
-        }
-
-        mutableAttributedString.setAttributes([.link: url], range: NSRange(subStringRange, in: text))
-        attributedText = mutableAttributedString
-        textAlignment = .center
-        textColor = .white
-        linkTextAttributes = [
-            .foregroundColor: UIColor.blue,
-            .underlineStyle: NSUnderlineStyle.single.rawValue,
-        ]
-    }
 }

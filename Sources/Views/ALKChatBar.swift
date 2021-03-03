@@ -44,12 +44,12 @@ open class ALKChatBar: UIView, Localizable {
 
     public var action: ((ActionType) -> Void)?
 
-    var poweredByMessageTextView: ALKTextView = {
-        let textView = ALKTextView(frame: .zero)
+    var poweredByMessageTextView: UITextView = {
+        let textView = UITextView(frame: .zero)
         textView.isUserInteractionEnabled = true
         textView.isSelectable = true
         textView.isEditable = false
-        textView.textContainer.maximumNumberOfLines = 10
+        textView.textContainer.maximumNumberOfLines = 1
         textView.textContainer.lineBreakMode = .byTruncatingTail
         textView.backgroundColor = UIColor.darkGray
         textView.dataDetectorTypes = .link
@@ -58,7 +58,7 @@ open class ALKChatBar: UIView, Localizable {
         textView.isScrollEnabled = false
         textView.delaysContentTouches = false
         textView.font = UIFont.systemFont(ofSize: 14)
-        textView.textContainerInset = .zero
+        textView.textContainerInset = UIEdgeInsets(top: 2, left: 0, bottom: 0, right: 0)
         textView.textContainer.lineFragmentPadding = 0
         textView.contentInset = .zero
         return textView
@@ -845,5 +845,23 @@ extension ALKChatBar: ALKAudioRecorderViewProtocol {
             micButton.cancelAudioRecord()
         #endif
         stopRecording()
+    }
+}
+
+extension UITextView {
+    func hyperLink(mutableAttributedString: NSMutableAttributedString,
+                   url: URL,
+                   clickString: String)
+    {
+        let range = mutableAttributedString.string.range(of: clickString)
+
+        guard let subStringRange = range else {
+            return
+        }
+
+        mutableAttributedString.setAttributes([.link: url], range: NSRange(subStringRange, in: mutableAttributedString.string))
+        attributedText = mutableAttributedString
+        textAlignment = .center
+        textColor = .white
     }
 }
